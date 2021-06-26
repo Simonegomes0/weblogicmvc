@@ -1,0 +1,98 @@
+<?php use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\URL;
+
+
+Layout::includeLayout('header') ?>
+<?php $user = Data::get('user')?>
+<?php ErrMgr::attach($user) ?>
+
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">User access</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Sign in</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">Create your account</h3>
+                            <p class="text-center text-muted">Caso não tenha conta registe-se <a href="login">aqui</a>.</p>
+                            <hr>
+
+                            <form method="post" action=<?=URL::toRoute('login/doregistration') ?>>
+                                <div class="top-margin">
+                                    <label>Username <span class="text-danger">*</span></label>
+                                    <input type="text" value="<?=$user->username?>" name="username" class="form-control">
+                                    <?= ErrMgr::bind('username') ?>
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>Email <span class="text-danger">*</span></label>
+                                    <input type="text" value="<?=$user->email?>" name="email" class="form-control">
+                                    <?= ErrMgr::bind('email') ?>
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>Nome <span class="text-danger">*</span></label>
+                                    <input type="text" value="<?=$user->nome?>" name="nome" class="form-control">
+                                    <?= ErrMgr::bind('nome') ?>
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>Morada <span class="text-danger">*</span></label>
+                                    <input type="text" value="<?=$user->morada?>" name="morada" class="form-control">
+                                    <?= ErrMgr::bind('morada') ?>
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>NIF <span class="text-danger">*</span></label>
+                                    <input type="text" value="<?=$user->nif?>" name="nif" class="form-control">
+                                    <?= ErrMgr::bind('nif') ?>
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>Telefone <span class="text-danger">*</span></label>
+                                    <input type="text" value="<?=$user->telefone?>" name="telefone" class="form-control">
+                                    <?= ErrMgr::bind('telefone') ?>
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>Password <span class="text-danger">*</span></label>
+                                    <input type="password" name="password" class="form-control">
+                                    <?= ErrMgr::bind('password') ?>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <b><a href="">Forgot password?</a></b>
+                                    </div>
+                                    <div class="col-lg-4 text-right">
+                                        <button class="btn btn-action" type="submit">Sign in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer') ?>
