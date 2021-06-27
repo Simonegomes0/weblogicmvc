@@ -25,7 +25,6 @@ Router::get('login/logout',         'LoginController/destroySession');
 Router::post('login/doregistration', 'LoginController/doRegistration');
 Router::post('login/dologin',       'LoginController/doLogin');
 
-
 Router::get('test/index',  'TestController/index');
 
 

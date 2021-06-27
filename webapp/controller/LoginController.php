@@ -4,20 +4,15 @@ use ArmoredCore\WebObjects\Post;
 use ArmoredCore\WebObjects\Redirect;
 use ArmoredCore\WebObjects\Debug;
 
-/**
- * Created by PhpStorm.
- * User: smendes
- * Date: 09-05-2016
- * Time: 11:30
- */
 class LoginController extends \ArmoredCore\Controllers\BaseController
 {
-    public function getLoginForm(){
-        return View::make('home.login');
+    public function getLoginForm()
+    {
+        return View::make('home.loginform');
     }
 
-    public function doLogin(){
-
+    public function doLogin()
+    {
         $username = Post::get('username');
         $password = Post::get('password');
         $user = User::find_by_username_and_password($username,$password);
@@ -31,7 +26,6 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
 
             switch ($role)
             {
-
                 case 'admin':
                     Redirect::toRoute('adminapp/index');
                     break;
@@ -50,7 +44,7 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
             }
         }else
         {
-            Redirect::toRoute('home/login');
+            Redirect::toRoute('login/login');
         }
     }
 
@@ -59,41 +53,25 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
         return View::make('home.register');
     }
 
-    public function doRegistration(){
-        {
+    public function doRegistration()
+    {
+        //create new resource (activerecord/model) instance with data from POST
+        //your form name fields must match the ones of the table fields
+        $user = new User(Post::getAll());
+        $user -> role='passageiro';
 
-            $user = new User(Post::getAll());
-            $user -> role='passageiro';
-
-            if($user->is_valid()){
-                $user->save();
-                Redirect::toRoute('login/dologin');
-            } else {
-                //redirect to form with data and errors
-                Redirect::flashToRoute('login/registration', ['user' => $user]);
-            }
+        if($user->is_valid()){
+            $user->save();
+            Redirect::toRoute('login/login');
+        } else {
+            //redirect to form with data and errors
+            Redirect::flashToRoute('login/registration', ['user' => $user]);
         }
     }
 
-
-
-    public function setsession(){
-        $dataObject = MetaArmCoreModel::getComponents();
-        Session::set('object', $dataObject);
-
-        Redirect::toRoute('home/worksheet');
+    public function destroySession()
+    {
+        AuthManager::logout();
+        Redirect::toRoute('home/index');
     }
-
-    public function showsession(){
-        $res = Session::get('object');
-        var_dump($res);
-    }
-
-    public function destroysession(){
-
-        Session::destroy();
-        Redirect::toRoute('home/worksheet');
-    }
-
-
 }
