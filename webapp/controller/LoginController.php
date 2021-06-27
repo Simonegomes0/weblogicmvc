@@ -8,7 +8,7 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
 {
     public function getLoginForm()
     {
-        return View::make('home.loginform');
+        return View::make('login.loginform');
     }
 
     public function doLogin()
@@ -30,7 +30,7 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
                     Redirect::toRoute('adminapp/index');
                     break;
                 case 'passageiro':
-                    Redirect::toRoute('passageiroapp/index');
+                    Redirect::toRoute('cliente/index');
                     break;
                 case 'gestorvoo':
                     Redirect::toRoute('gestorvooapp/index');
@@ -50,7 +50,7 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
 
     public function getRegistrationForm()
     {
-        return View::make('home.register');
+        return View::make('login.register');
     }
 
     public function doRegistration()

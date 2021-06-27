@@ -35,22 +35,8 @@ Layout::includeLayout('header') ?>
                                 <div class="top-margin">
                                     <label>Password <span class="text-danger">*</span></label>
                                     <input type="password" class="form-control" name="palavrachave" id="myPW">
-                                    <input onclick="showPW()" type="checkbox"> Mostrar password <span class="glyphicon glyphicon-eye-open"></span>
-
-                                    <script>
-                                        function showPW() {
-                                            var campo = document.getElementById("myPW");
-                                            if (campo.type === "password") {
-                                                campo.type = "text";
-                                            } else {
-                                                campo.type = "password";
-                                            }
-                                        }
-                                    </script>
                                 </div>
-
                                 <hr>
-
                                 <div class="row">
                                     <div class="col-lg-4 text-right">
                                         <button class="btn btn-action" type="submit">Sign in</button>
