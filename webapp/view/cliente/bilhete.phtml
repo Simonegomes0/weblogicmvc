@@ -1,5 +1,4 @@
 <?php
-
 use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
@@ -24,7 +23,7 @@ $escalas = Data::get('escalas');
         <h2 class="top-space"></h2>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-striped"><thead><th><h3>Designação</h3></th><th><h3>Preço</h3></th><th><h3>Aeroporto de Origem</h3></th><th><h3>Aeroporto de Destino</h3></th><th><h3>Distância do Voo</h3></th><th><h3>Detalhes</h3></th><th><h3>Comprar</h3></th>
+                <table class="table table-striped"><thead><th><h3>Viagem</h3></th><th><h3>Preço</h3></th><th><h3>Aeroporto de Origem</h3></th><th><h3>Aeroporto de Destino</h3></th><th><h3>Detalhes</h3></th><th><h3>Comprar</h3></th>
                     </thead>
                     <tbody>
                     <?php foreach ($voos as $voo) { ?>
@@ -34,12 +33,11 @@ $escalas = Data::get('escalas');
                              <?php foreach ($aeroportos as $aeroporto) { ?>
                             <td><?=$aeroporto->nome?></td>
                              <?php } ?>
-                            <td><?=$Voo->Distancia($escalas, $voo->id) . ' milhas'?></td>
                             <td>
-                                <a href="<?=Url::toRoute('passageiroapp/show', $voo->id)?>" class="btn btn-info" role="button">Ver</a>
+                                <a href="<?=Url::toRoute('cliente/mostrar', $voo->id)?>" class="btn btn-info" role="button">Mostrar</a>
                             </td>
                             <td>
-                                <a href="<?=Url::toRoute('passageiroapp/buy', $voo->id)?>" class="btn btn-success" role="button">Comprar</a>
+                                <a href="<?=Url::toRoute('cliente/comprar', $voo->id)?>" class="btn btn-success" role="button">Comprar</a>
                             </td>
                         </tr>
                     <?php } ?>

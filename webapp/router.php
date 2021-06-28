@@ -28,8 +28,10 @@ Router::post('login/dologin',       'LoginController/doLogin');
 // Cliente
 
 Router::get('cliente/bilhete', 'ClienteController/VerVoos');
+Router::post('cliente/bilhete', 'ClienteController/VerVoos');
 Router::get('cliente/index', 'ClienteController/index');
 Router::get('cliente/comprar', 'ClienteController/Comprar');
+Router::get('cliente/mostrar', 'ClienteController/Mostrar');
 
 
 

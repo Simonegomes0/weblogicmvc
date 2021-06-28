@@ -1,1 +1,65 @@
 <?php
+
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('clienteheader') ?>
+<?php
+$voos = Data::get('voos');
+$aeroportos = Data::get('aeroportos');
+$Voo = new Voo();
+$escalas = Data::get('escalas');
+?>
+
+    <!-- container -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                 <?php foreach ($voos as $voo) { ?>
+                    <h1 class="page-title">Voo '<?=$voo->descricao?>'</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <hr>
+                            <form method="post" action="<?=Url::toRoute('buyticket/store', $voo->id)?>">
+                                <label>Origem/Destino</label>
+                            <?php foreach ($aeroportos as $aeroporto) { ?>
+                                <div class="top-margin">
+                                    <input readonly="true" type="text" value="<?=$aeroporto->nome?>" class="form-control">
+                                </div>
+                            <?php } ?>
+                                <div class="top-margin">
+                                    <label>Preco</label>
+                                    <input readonly="true" type="text" value="<?=$voo->preco?> €" name="preco" class="form-control">
+                                </div>
+                                <hr>
+                <?php } ?>
+                             <?php foreach ($escalas as $escala) { ?>
+                                 <div class="top-margin">
+                                     <label>Data Origem</label>
+                                     <input readonly="true" type="text" value="<?=$escala->dOrigem?> €" name="dataOrigem" class="form-control">
+                                 </div>
+                             <?php } ?>
+                                <div class="col-lg-4 text-right">
+                                    <button class="btn btn-action" type="submit">Pagar</button>
+                                </div>
+                         </div>
+                        </form>
+                    </div>
+                </div>
+
+        </div>
+
+        </article>
+        <!-- /Article -->
+
+    </div>
+    </div>	<!-- /container -->
+<?php Layout::includeLayout('footer')?>

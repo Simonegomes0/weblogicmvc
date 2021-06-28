@@ -21,10 +21,28 @@ class ClienteController extends BaseAuthController
         return View::make('cliente.bilhete', ['voos'=>$voos, 'aeroportos'=>$aeroportos, 'escalas'=>$escalas]);
     }
 
-    public function Comprar()
+    public function Comprar($id)
     {
         $this->loginFilterByRole('passageiro');
 
-        return View::make('cliente.comprar');
+        $this->loginFilterByRole('passageiro');
+        $voos = voo::all();
+        $aeroportos = aeroporto::all();
+        $escalas = escala::all();
+
+        return View::make('cliente.comprar', ['voos'=>$voos, 'aeroportos'=>$aeroportos, 'escalas'=>$escalas]);
+    }
+
+    public function Mostrar($id)
+    {
+        $this->loginFilterByRole('passageiro');
+
+        $voo = Voo::find([$id]);
+
+        if (is_null($voo)) {
+            return View::make('cliente.index');
+        } else {
+            return View::make('cliente.mostrar', ['voo' => $voo]);
+        }
     }
 }

@@ -51,15 +51,4 @@ class Voo extends Model
         return $toReturn;
     }
 
-    public function Distancia($escalas, $idvoo)
-    {
-        $totalMilhas = 0;
-        foreach ($escalas as $escala)
-        {
-            if($escala->idvoo == $idvoo)
-                $totalMilhas += $escala->distancia;
-        }
-
-        return $totalMilhas;
-    }
 }
