@@ -80,8 +80,15 @@ Layout::includeLayout('header') ?>
                                         <b><a href="">Forgot password?</a></b>
                                     </div>
                                     <div class="col-lg-4 text-right">
-                                        <button class="btn btn-action" type="submit">Sign in</button>
+                                        <button class="btn btn-action" type="submit" onclick="msg()">Sign in</button>
                                     </div>
+
+                                    <!-- Mensagem de alerta quando alguem se regista -->
+                                    <script>
+                                        function msg() {
+                                            alert("Registado com sucesso!");
+                                        }
+                                    </script>
                                 </div>
                             </form>
                         </div>
