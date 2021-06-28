@@ -4,6 +4,20 @@ use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 Layout::includeLayout('clienteheader'); ?>
 
+
+    <!-- Header -->
+    <header id="head">
+        <div class="container">
+            <div class="row">
+                <h1 class="lead"><b>Viaje em Estilo</b><br></h1>
+                <p class="tagline">Developing better Flights. Creating better Journey´s.</p>
+                <p><a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('cliente/bilhete')?>">Comprar Bilhete</a></p>
+                <p class="small">By<i> FlighTravelAir</i></p>
+            </div>
+        </div>
+    </header>
+    <!-- /Header -->
+
     <!-- Header -->
     <header>
         <div class="container">

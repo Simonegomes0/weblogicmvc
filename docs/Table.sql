@@ -18,13 +18,13 @@ CREATE TABLE users (
   CONSTRAINT uk_users_nif UNIQUE KEY (nif)
 ) ENGINE=InnoDB;
 
-
+drop table aeroporto;
 CREATE TABLE aeroporto (
   idAeroporto int(11) NOT NULL AUTO_INCREMENT,
   nome varchar(45) DEFAULT NULL,
-  localizacao varchar(45) DEFAULT NULL,
-  telefone varchar(45) DEFAULT NULL,
+  localidade varchar(45) DEFAULT NULL,
   pais varchar(45) DEFAULT NULL,
+  telefone varchar(45) DEFAULT NULL,
   CONSTRAINT pk_idAeroporto PRIMARY KEY (idAeroporto)
 ) ENGINE=InnoDB;
 

@@ -1,0 +1,52 @@
+<?php
+
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('clienteheader') ?>
+<?php
+$voos = Data::get('voos');
+$aeroportos = Data::get('aeroportos');
+$Voo = new Voo();
+$escalas = Data::get('escalas');
+?>
+
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Voos</li>
+        </ol>
+
+        <h2 class="text-left top-space">Voos</h2>
+        <h2 class="top-space"></h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-striped"><thead><th><h3>Designação</h3></th><th><h3>Preço</h3></th><th><h3>Aeroporto de Origem</h3></th><th><h3>Aeroporto de Destino</h3></th><th><h3>Distância do Voo</h3></th><th><h3>Detalhes</h3></th><th><h3>Comprar</h3></th>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($voos as $voo) { ?>
+                        <tr>
+                            <td><?=$voo->descricao?></td>
+                            <td><?=$voo->preco . ' €'?></td>
+                             <?php foreach ($aeroportos as $aeroporto) { ?>
+                            <td><?=$aeroporto->nome?></td>
+                             <?php } ?>
+                            <td><?=$Voo->Distancia($escalas, $voo->id) . ' milhas'?></td>
+                            <td>
+                                <a href="<?=Url::toRoute('passageiroapp/show', $voo->id)?>" class="btn btn-info" role="button">Ver</a>
+                            </td>
+                            <td>
+                                <a href="<?=Url::toRoute('passageiroapp/buy', $voo->id)?>" class="btn btn-success" role="button">Comprar</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- /row -->
+
+    </div>	<!-- /container -->
+<?php Layout::includeLayout('footer')?>
