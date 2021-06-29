@@ -1,6 +1,9 @@
 <?php
+use ArmoredCore\WebObjects\Session;
+use ArmoredCore\WebObjects\View;
+use ArmoredCore\WebObjects\Post;
+use ArmoredCore\WebObjects\Redirect;
 
-use \ArmoredCore\WebObjects\View;
 
 class ClienteController extends BaseAuthController
 {

@@ -8,47 +8,29 @@ class Voo extends Model
     );
 
 
-    public function CalcularTotal($escalas, $idVoo)
+    public function NomeAero($aeroportos, $idAero)
     {
-        $total = 0;
-        foreach($escalas as $escala)
+        $return = '';
+        foreach ($aeroportos as $aeroporto)
         {
-            if($escala->idvoo == $idVoo)
+            if($aeroporto->id == $idAero)
             {
-                $total += $escala->custo;
+                $return = $aeroporto->nome;
             }
         }
-        return $total;
+        return $return;
     }
 
-    public function DefinirAeroportoOrigem($escalas, $idVoo)
+    public function Longitude($escalas, $idvoo)
     {
-
-        $toReturn = 0;
-        $verificado = 0;
+        $viagem = 0;
         foreach ($escalas as $escala)
         {
-            if($escala->idvoo == $idVoo && $verificado == 0)
-            {
-                $toReturn = $escala->idaeroportoorigem;
-                $verificado = 1;
-            }
-
+            if($escala->idvoo == $idvoo)
+                $viagem += $escala->distancia;
         }
-        return $toReturn;
-    }
 
-    public function DefinirAeroportoDestino($escalas, $idVoo)
-    {
-        $toReturn = 0;
-        foreach ($escalas as $escala)
-        {
-            if($escala->idvoo == $idVoo)
-            {
-                $toReturn = $escala->idaeroportodestino;
-            }
-        }
-        return $toReturn;
+        return $viagem;
     }
 
 }
