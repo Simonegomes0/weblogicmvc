@@ -1,15 +1,15 @@
 <?php
-
 use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
 Layout::includeLayout('clienteheader') ?>
 <?php
-$voos = Data::get('voos');
-$aeroportos = Data::get('aeroportos');
-$Voo = new Voo();
-$escalas = Data::get('escalas');
+$voo = Data::get('voo');
+$aeroportoOrigem = Data::get('aeroportoOrigem');
+$aeroportoDestino = Data::get('aeroportoDestino');
+$escala = Data::get('escala');
+
 ?>
 
     <!-- container -->
@@ -20,37 +20,41 @@ $escalas = Data::get('escalas');
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                 <?php foreach ($voos as $voo) { ?>
-                    <h1 class="page-title">Voo '<?=$voo->descricao?>'</h1>
+                    <h1 class="page-title">Ligação <?=$voo->descricao?></h1>
                 </header>
-
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <hr>
-                            <form method="post" action="<?=Url::toRoute('buyticket/store', $voo->id)?>">
-                                <label>Origem/Destino</label>
-                            <?php foreach ($aeroportos as $aeroporto) { ?>
+                            <div method="post" action="<?=Url::toRoute('cliente/pagar', $voo->id)?>">
+                                <h3>De:</h3>
                                 <div class="top-margin">
-                                    <input readonly="true" type="text" value="<?=$aeroporto->nome?>" class="form-control">
+                                    <label>Aeroporto Origem:</label>
+                                    <input readonly="true" type="text" value="<?=$aeroportoOrigem->nome?>" class="form-control">
                                 </div>
-                            <?php } ?>
                                 <div class="top-margin">
-                                    <label>Preco</label>
+                                    <label>Localida:</label>
+                                    <input readonly="true" type="text" value="<?=$aeroportoOrigem->localidade?>" class="form-control">
+                                </div>
+                                <h3>Para:</h3>
+                                <div class="top-margin">
+                                    <label>Aeroporto Destino:</label>
+                                    <input readonly="true" type="text" value="<?=$aeroportoDestino->nome?>" class="form-control">
+                                </div>
+                                <div class="top-margin">
+                                    <label>Localidade:</label>
+                                    <input readonly="true" type="text" value="<?=$aeroportoDestino->localidade?>" class="form-control">
+                                </div>
+                                <h3>Informações:</h3>
+                                <div class="top-margin">
+                                    <label>Preco:</label>
                                     <input readonly="true" type="text" value="<?=$voo->preco?> €" name="preco" class="form-control">
                                 </div>
                                 <hr>
-                <?php } ?>
-                             <?php foreach ($escalas as $escala) { ?>
-                                 <div class="top-margin">
-                                     <label>Data Origem</label>
-                                     <input readonly="true" type="text" value="<?=$escala->dOrigem?> €" name="dataOrigem" class="form-control">
-                                 </div>
-                             <?php } ?>
                                 <div class="col-lg-4 text-right">
                                     <button class="btn btn-action" type="submit">Pagar</button>
                                 </div>
-                         </div>
+                        </div>
                         </form>
                     </div>
                 </div>
