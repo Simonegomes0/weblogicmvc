@@ -42,11 +42,17 @@ Router::post('admin/aeroportosAdd',   'AdminController/aeroportosAdd');
 Router::get('admin/doUpdateAero',   'AdminController/doUpdateAero');
 Router::post('admin/doUpdateAero',   'AdminController/doUpdateAero');
 Router::get('admin/aeroUpdate',   'AdminController/aeroUpdate');
+Router::get('admin/AeroEliminar',   'AdminController/AeroEliminar');
 
 Router::get('admin/Funcionario', 'AdminController/Funcionarios');
 Router::get('admin/funcioUpdate', 'AdminController/funcioUpdate');
 Router::get('admin/doUpdateFuncio', 'AdminController/doUpdateFuncio');
 Router::post('admin/doUpdateFuncio', 'AdminController/doUpdateFuncio');
+Router::get('admin/funcionarioForm', 'AdminController/funcionarioForm');
+Router::post('admin/funcioAdd', 'AdminController/funcioAdd');
+Router::get('admin/funcioAdd', 'AdminController/funcioAdd');
+Router::get('admin/funcioEliminar', 'AdminController/funcioEliminar');
+
 
 //GestorVoo
 

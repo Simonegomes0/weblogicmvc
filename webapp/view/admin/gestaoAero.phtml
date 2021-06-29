@@ -18,7 +18,7 @@ $aeroportos = Data::get('aeroportos');
         <h2 class="top-space"></h2>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-striped"><thead><th><h3>Nome:</h3></th><th><h3>Localidade:</h3></th><th><h3>País:</h3></th><th><h3>Telefone:</h3></th><th><h3>Editar:</h3></th></thead>
+                <table class="table table-striped"><thead><th><h3>Nome:</h3></th><th><h3>Localidade:</h3></th><th><h3>País:</h3></th><th><h3>Telefone:</h3></th><th><h3>Editar:</h3></th></th><th><h3>Apagar:</h3></th></thead>
                     <tbody>
                     <?php foreach ($aeroportos as $aeroporto) { ?>
                         <tr>
@@ -28,6 +28,9 @@ $aeroportos = Data::get('aeroportos');
                             <td><?=$aeroporto->telefone?></td>
                             <td>
                                 <a href="<?=Url::toRoute('admin/aeroUpdate', $aeroporto->id)?>" class="btn btn-success" role="button">Gerir</a>
+                            </td>
+                            <td>
+                                <a href="<?=Url::toRoute('admin/AeroEliminar', $aeroporto->id)?>" class="btn btn-success" role="button">Apagar</a>
                             </td>
                         </tr>
                     <?php } ?>

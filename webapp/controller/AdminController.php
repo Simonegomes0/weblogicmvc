@@ -24,10 +24,8 @@ class AdminController extends BaseAuthController
 
     public function getAeroportoForm()
     {
-
         $this->loginFilterByRole('admin');
-
-        return View::make('admin.aeroportos');
+        return View::make('admin.aeroAdd');
     }
 
 
@@ -39,7 +37,7 @@ class AdminController extends BaseAuthController
 
         if (is_null($aeroporto)) {
         } else {
-            return View::make('admin.aeroupdate', ['aeroporto' => $aeroporto]);
+            return View::make('admin.aeroUpdate', ['aeroporto' => $aeroporto]);
         }
     }
 
@@ -57,11 +55,7 @@ class AdminController extends BaseAuthController
     public function aeroportosAdd()
     {
         $this->loginFilterByRole('admin');
-
-
-
         $aeroporto = new Aeroporto(Post::getAll());
-
 
         if ($aeroporto->is_valid()) {
             $aeroporto->save();
@@ -69,6 +63,15 @@ class AdminController extends BaseAuthController
         } else {
             Redirect::flashToRoute('admin/aeroportosAdd', ['aeroporto' => $aeroporto]);
         }
+    }
+
+    public function AeroEliminar($id)
+    {
+        $this->loginFilterByRole('admin');
+
+        $aeroporto = Aeroporto::find([$id]);
+        $aeroporto->delete();
+        Redirect::toRoute('admin/GestaoAero');
     }
 
     public function Funcionarios()
@@ -108,8 +111,34 @@ class AdminController extends BaseAuthController
         }
     }
 
-    public function Eliminar($id)
+    public function funcionarioForm()
     {
+        $this->loginFilterByRole('admin');
 
+        return View::make('admin.funcioAdd');
+    }
+
+    public function funcioAdd()
+    {
+        $this->loginFilterByRole('admin');
+
+        $operador = new User(Post::getAll());
+
+        if($operador->is_valid()){
+            $operador->save();
+            Redirect::toRoute('admin/Funcionario');
+        } else {
+            //redirect to form with data and errors
+            Redirect::flashToRoute('admin/funcionarioForm', ['operador' => $operador]);
+        }
+    }
+
+    public function funcioEliminar($id)
+    {
+        $this->loginFilterByRole('admin');
+
+        $operador = User::find([$id]);
+        $operador->delete();
+        Redirect::toRoute('admin/Funcionario');
     }
 }
