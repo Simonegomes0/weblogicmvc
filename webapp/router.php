@@ -34,10 +34,16 @@ Router::get('cliente/comprar', 'ClienteController/Comprar');
 Router::post('cliente/pagar', 'ClienteController/Pagar');
 Router::get('cliente/mostrar', 'ClienteController/Mostrar');
 
+//Admin
+Router::get('admin/index', 'AdminController/index');
 
+//GestorVoo
 
+Router::get('gestorvoo/index', 'GestorVooController/index');
 
+//OpCheckIn
 
+Router::get('opcheckin/index', 'OpCheckInController/index');
 
 
 

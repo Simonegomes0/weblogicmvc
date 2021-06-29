@@ -27,16 +27,16 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
             switch ($role)
             {
                 case 'admin':
-                    Redirect::toRoute('adminapp/index');
+                    Redirect::toRoute('admin/index');
                     break;
                 case 'passageiro':
                     Redirect::toRoute('cliente/index');
                     break;
                 case 'gestorvoo':
-                    Redirect::toRoute('gestorvooapp/index');
+                    Redirect::toRoute('gestorvoo/index');
                     break;
                 case 'opcheckin':
-                    Redirect::toRoute('opcheckinapp/index');
+                    Redirect::toRoute('opcheckin/index');
                     break;
 
                 default:
