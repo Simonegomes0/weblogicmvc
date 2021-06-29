@@ -1,0 +1,93 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('adminappheader') ?>
+<?php $funcionario = Data::get('funcionario')?>
+<?php ErrMgr::attach($funcionario) ?>
+
+
+    <!-- container -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Novo Funcionário</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <hr>
+                            <form method="post" action="<?=Url::toRoute('funcionario/store')?>">
+                                <div class="top-margin">
+                                    <label>Nome <span class="text-danger">*</span></label>
+                                    <input type="text" autocomplete="off" value="<?=$funcionario->nome?>" name="nome" class="form-control" placeholder="Introduza o nome">
+                                    <?= ErrMgr::bind('nome') ?>
+                                </div>
+                                <div class="top-margin">
+                                    <label>Cargo<span class="text-danger">*</span></label>
+                                    <select name="role" class="form-control" value="<?=$funcionario->role?>">
+                                        <option value="administrador">administrador</option>
+                                        <option value="gestorvoo">gestor de voo</option>
+                                        <option value="operadorcheckin" selected="selected" >operador de checkin</option>
+                                    </select>
+                                    <?= ErrMgr::bind('role') ?>
+                                </div>
+                                <div>
+                                    <label>Morada<span class="text-danger">*</span></label>
+                                    <input type="text" autocomplete="off" value="<?=$funcionario->morada?>" name="morada" class="form-control" placeholder="Introduza a morada">
+                                    <?= ErrMgr::bind('morada') ?>
+                                </div>
+                                <div>
+                                    <label>Email<span class="text-danger">*</span></label>
+                                    <input type="text" autocomplete="off" value="<?=$funcionario->email?>" name="email" class="form-control" placeholder="Introduza o email">
+                                    <?= ErrMgr::bind('email') ?>
+                                </div>
+                                <div>
+                                    <label>NIF<span class="text-danger">*</span></label>
+                                    <input type="text" autocomplete="off" value="<?=$funcionario->nif?>" name="nif" class="form-control" placeholder="Introduza o NIF">
+                                    <?= ErrMgr::bind('nif') ?>
+                                </div>
+                                <div>
+                                    <label>Contacto telefónico<span class="text-danger">*</span></label>
+                                    <input type="text" autocomplete="off" value="<?=$funcionario->telefone?>" name="telefone" class="form-control" placeholder="Introduza o contacto telefónico">
+                                    <?= ErrMgr::bind('telefone') ?>
+                                </div>
+                                <div>
+                                    <label>Username<span class="text-danger">*</span></label>
+                                    <input type="text" autocomplete="off" value="<?=$funcionario->username?>" name="username" class="form-control" placeholder="Introduza o nome de utilizador">
+                                    <?= ErrMgr::bind('username') ?>
+                                </div>
+                                <div>
+                                    <label>Password<span class="text-danger">*</span></label>
+                                    <input type="password" autocomplete="off" value="<?=$funcionario->palavrachave?>" name="palavrachave" class="form-control" placeholder="Introduza a password">
+                                    <?= ErrMgr::bind('palavrachave') ?>
+                                </div>
+
+                                <hr>
+
+                                <div class="col-lg-4 text-right">
+                                    <button class="btn btn-action" type="submit">Criar</button>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                    <form method="post" action="<?=URL::toRoute('funcionario/index')?>">
+                        <button class="btn btn-danger" type="submit">Cancelar</button>
+                    </form>
+                </div>
+
+        </div>
+
+        </article>
+        <!-- /Article -->
+
+    </div>
+    </div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer') ?>

@@ -1,0 +1,126 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('flightappheader');
+$escala = Data::get('escala');
+$aeroportos = Data::get('aeroportos');
+$idvoo = Data::get('idvoo');
+ErrMgr::attach($escala);
+?>
+
+    <!-- container -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Editar Escala</h1>
+                </header>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <hr>
+
+
+                        <form class="form-horizontal" method="post" action="<?=Url::toRoute('escala/update', $escala->id)?>">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="referencia">Data de origem:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="date" value="<?=$escala->dataorigem?>" class="form-control" required name="dataorigem">
+                                    <?= ErrMgr::bind('dataorigem') ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lotacao">Hora de origem:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="time" required value="<?=$escala->horaorigem?>" class="form-control" name="horaorigem">
+                                    <?= ErrMgr::bind('horaorigem') ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="tipoaviao">Tipo:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="date" required value="<?=$escala->datadestino?>" class="form-control" name="datadestino">
+                                    <?= ErrMgr::bind('datadestino') ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lotacao">Hora de destino:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="time" required value="<?=$escala->horadestino?>" class="form-control" name="horadestino">
+                                    <?= ErrMgr::bind('horadestino') ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lotacao">Distância:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" required value="<?=$escala->distancia?>" class="form-control" name="distancia">
+                                    <?= ErrMgr::bind('distancia') ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lotacao">Custo:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" required value="<?=$escala->custo?>" class="form-control" name="custo">
+                                    <?= ErrMgr::bind('custo') ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lotacao">Aeroporto Origem:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <?php
+                                    echo('<select name="idaeroportodestino" class="form-control">');
+                                    foreach($aeroportos as $aeroporto)
+                                    {
+                                        echo('<option value="' . $aeroporto->id . '">' . $aeroporto->nome . '</option>');
+                                    }
+                                    echo('</select>');
+                                    ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="lotacao">Aeroporto Destino:<span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    <?php
+                                    echo('<select name="idaeroportodestino" class="form-control">');
+                                    foreach($aeroportos as $aeroporto)
+                                    {
+                                        echo('<option value="' . $aeroporto->id . '">' . $aeroporto->nome . '</option>');
+                                    }
+                                    echo('</select>');
+                                    ?>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="col-lg-4 text-right">
+                                <button class="btn btn-default" type="submit">Guardar</button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+        </div>
+
+
+
+        </article>
+        <!-- /Article -->
+
+    </div>
+    </div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer') ?>
