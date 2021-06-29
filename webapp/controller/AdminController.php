@@ -54,6 +54,22 @@ class AdminController extends BaseAuthController
         Redirect::toRoute('admin/GestaoAero');
     }
 
+    public function aeroportosAdd()
+    {
+        $this->loginFilterByRole('admin');
+
+
+
+        $aeroporto = new Aeroporto(Post::getAll());
+
+
+        if ($aeroporto->is_valid()) {
+            $aeroporto->save();
+            Redirect::toRoute('admin/GestaoAero');
+        } else {
+            Redirect::flashToRoute('admin/aeroportosAdd', ['aeroporto' => $aeroporto]);
+        }
+    }
 
     public function Funcionarios()
     {
