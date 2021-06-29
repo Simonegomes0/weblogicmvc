@@ -36,6 +36,16 @@ Router::get('cliente/mostrar', 'ClienteController/Mostrar');
 
 //Admin
 Router::get('admin/index', 'AdminController/index');
+Router::get('admin/GestaoAero', 'AdminController/GestaoAero');
+Router::get('admin/aeroportos',   'AdminController/getAeroportoForm');
+Router::get('admin/doUpdateAero',   'AdminController/doUpdateAero');
+Router::post('admin/doUpdateAero',   'AdminController/doUpdateAero');
+Router::get('admin/aeroUpdate',   'AdminController/aeroUpdate');
+
+Router::get('admin/Funcionario', 'AdminController/Funcionarios');
+Router::get('admin/funcioUpdate', 'AdminController/funcioUpdate');
+Router::get('admin/doUpdateFuncio', 'AdminController/doUpdateFuncio');
+Router::post('admin/doUpdateFuncio', 'AdminController/doUpdateFuncio');
 
 //GestorVoo
 

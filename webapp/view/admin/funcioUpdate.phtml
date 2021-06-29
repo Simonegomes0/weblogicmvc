@@ -1,0 +1,70 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('adminheader') ?>
+<?php $operador = Data::get('operador') ?>
+<?php ErrMgr::attach($operador) ?>
+
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Funcionário <?= $operador->nome ?></h1>
+                </header>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <hr>
+                        <form class="form-horizontal" method="post" action="<?=Url::toRoute('admin/doUpdateFuncio', $operador->id)?>">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="nome">Nome</label>
+                                <div class="col-sm-6">
+                                    <input type="text" value="<?=$operador->nome?>" class="form-control" required name="nome" placeholder="Introuza o nome">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="role">Função</label>
+                                <div class="col-sm-6">
+                                    <input type="text" readonly="true" required value="<?=$operador->role?>" class="form-control" name="role" placeholder="Intrduza a morada">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="morada">Morada</label>
+                                <div class="col-sm-6">
+                                    <input type="text" required value="<?=$operador->morada?>" class="form-control" name="morada" placeholder="Intrduza a morada">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="email">Email</label>
+                                <div class="col-sm-6">
+                                    <input type="text" required value="<?=$operador->email?>" class="form-control" name="email" placeholder="Introduza o email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="nif">NIF</label>
+                                <div class="col-sm-6">
+                                    <input type="text" required value="<?=$operador->nif?>" class="form-control" name="nif" placeholder="Introduza o NIF">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="telefone">Telefone</label>
+                                <div class="col-sm-6">
+                                    <input type="text" required value="<?=$operador->telefone?>" class="form-control" name="telefone" placeholder="Introduza o telefone">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-lg-4 text-right">
+                                <button class="btn btn-default" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </article>
+            <!-- /Article -->
+        </div>
+    </div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer') ?>

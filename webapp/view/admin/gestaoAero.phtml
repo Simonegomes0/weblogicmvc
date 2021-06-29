@@ -1,0 +1,41 @@
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+Layout::includeLayout('adminheader');
+$aeroportos = Data::get('aeroportos');
+?>
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index">Home</a></li>
+            <li class="active">Aeroportos</li>
+        </ol>
+
+        <h2 class="text-left top-space">Aeroportos</h2>
+        <h2 class="top-space"></h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-striped"><thead><th><h3>Nome:</h3></th><th><h3>Localidade:</h3></th><th><h3>País:</h3></th><th><h3>Telefone:</h3></th><th><h3>Editar:</h3></th></thead>
+                    <tbody>
+                    <?php foreach ($aeroportos as $aeroporto) { ?>
+                        <tr>
+                            <td><?=$aeroporto->nome?></td>
+                            <td><?=$aeroporto->localidade?></td>
+                            <td><?=$aeroporto->pais?></td>
+                            <td><?=$aeroporto->telefone?></td>
+                            <td>
+                                <a href="<?=Url::toRoute('admin/aeroUpdate', $aeroporto->id)?>" class="btn btn-success" role="button">Gerir</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- /row -->
+
+    </div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer')?>

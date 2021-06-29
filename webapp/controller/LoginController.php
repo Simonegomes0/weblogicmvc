@@ -55,8 +55,6 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
 
     public function doRegistration()
     {
-        //create new resource (activerecord/model) instance with data from POST
-        //your form name fields must match the ones of the table fields
         $user = new User(Post::getAll());
         $user -> role='passageiro';
 
