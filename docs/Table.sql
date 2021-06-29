@@ -1,14 +1,13 @@
 Create database if not exists FlighTravelAir;
 Use FlighTravelAir;
-drop database flightravelair;
 
-DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `aeroportos`; --
 DROP TABLE IF EXISTS `escalaaviao`;
 DROP TABLE IF EXISTS `escalas`; --
+DROP TABLE IF EXISTS `aviao`;
 DROP TABLE IF EXISTS `passagemvenda`;
-DROP TABLE IF EXISTS `planes`; --
-DROP TABLE IF EXISTS `users`; -- 
 DROP TABLE IF EXISTS `voos`; --
 
 
@@ -26,7 +25,7 @@ CREATE TABLE users (
   CONSTRAINT uk_users_nif UNIQUE KEY (nif)
 ) ENGINE=InnoDB;
 
-drop table aeroportos;
+
 CREATE TABLE aeroportos (
   id int(11) NOT NULL AUTO_INCREMENT,
   nome varchar(45) DEFAULT NULL,
@@ -44,7 +43,7 @@ values
 (default, 'Dubai Internacional Airport', 'Dubai', 'Arabes United', '787432564');
 
 
-drop table voos;
+
 CREATE TABLE voos (
   id int(11) NOT NULL AUTO_INCREMENT,
   descricao varchar(100) DEFAULT NULL,
@@ -64,7 +63,7 @@ values
 (1,'Lisboa-Madrid',265.00,1,2),
 (2,'Londres-Dubai',679.00,3,4);
 
-drop table escalas;
+
 CREATE TABLE escalas (
   idEscala int(11) NOT NULL AUTO_INCREMENT,
   idaeroportoorigem int(11) DEFAULT NULL,
@@ -91,4 +90,6 @@ CREATE TABLE aviao (
   tipoAviao varchar(45) DEFAULT NULL,
   CONSTRAINT pk_idAviao PRIMARY KEY (idAviao)
 ) ENGINE = InnoDB;
+
+
 
