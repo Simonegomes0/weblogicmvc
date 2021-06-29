@@ -2,14 +2,6 @@ Create database if not exists FlighTravelAir;
 Use FlighTravelAir;
 
 
-DROP TABLE IF EXISTS `users`;
-DROP TABLE IF EXISTS `aeroportos`; --
-DROP TABLE IF EXISTS `escalaaviao`;
-DROP TABLE IF EXISTS `escalas`; --
-DROP TABLE IF EXISTS `aviao`;
-DROP TABLE IF EXISTS `passagemvenda`;
-DROP TABLE IF EXISTS `voos`; --
-
 
 CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -25,6 +17,11 @@ CREATE TABLE users (
   CONSTRAINT uk_users_nif UNIQUE KEY (nif)
 ) ENGINE=InnoDB;
 
+
+insert into users values
+(1, 'Jorge', 'null', 'null', 123455432, 987654321, 'admin', 'admin', 'admin'),
+(2, 'Carlos', 'null', 'null', 123443215, 987654321, 'gestorvoo', 'gestorvoo', 'gestorvoo'),
+(3, 'Maria', 'null', 'null', 543214321, 987654321, 'opcheckin', 'opcheckin', 'opcheckin');
 
 CREATE TABLE aeroportos (
   id int(11) NOT NULL AUTO_INCREMENT,
