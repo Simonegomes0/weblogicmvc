@@ -6,9 +6,8 @@ DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `aeroportos`; --
 DROP TABLE IF EXISTS `escalaaviao`;
 DROP TABLE IF EXISTS `escalas`; --
+DROP TABLE IF EXISTS `aviao`;
 DROP TABLE IF EXISTS `passagemvenda`;
-DROP TABLE IF EXISTS `aviao`; --
-DROP TABLE IF EXISTS `users`; -- 
 DROP TABLE IF EXISTS `voos`; --
 
 
@@ -28,7 +27,7 @@ CREATE TABLE users (
 
 
 CREATE TABLE aeroportos (
-  idAeroporto int(11) NOT NULL AUTO_INCREMENT,
+  id int(11) NOT NULL AUTO_INCREMENT,
   nome varchar(45) DEFAULT NULL,
   localidade varchar(45) DEFAULT NULL,
   pais varchar(45) DEFAULT NULL,
