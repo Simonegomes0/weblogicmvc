@@ -20,31 +20,23 @@ $escalas = Data::get('escalas');
         </ol>
 
         <h2 class="text-left top-space">Voos</h2>
-        <h2 class="top-space"></h2>
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-striped"><thead><th><h3>Viagem</h3></th><th><h3>Preço</h3></th><th><h3>Aeroporto de Origem</h3></th><th><h3>Aeroporto de Destino</h3></th><th><h3>Detalhes</h3></th><th><h3>Comprar</h3></th>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($voos as $voo) { ?>
-                        <tr>
-                            <td><?=$voo->descricao?></td>
-                            <td><?=$voo->preco . ' €'?></td>
-                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?></td>
-                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
-                            <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
-                            <td>
-                                <a href="<?=Url::toRoute('cliente/mostrar', $voo->id)?>" class="btn btn-info" role="button">Ver</a>
-                            </td>
-                            <td>
-                                <a href="<?=Url::toRoute('cliente/comprar', $voo->id)?>" class="btn btn-success" role="button">Comprar</a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div> <!-- /row -->
+        <h3>Aqui poderá obter todas as informações necessárias para ter uma viagem incrível!</h3>
 
-    </div>	<!-- /container -->
+    </div>
+    <br><br>
+<?php foreach ($voos as $voo) { ?>
+    <div class="card card-1" style="background-image: url(https://4.bp.blogspot.com/-3zTI9AQgTy8/XBQIDhtanFI/AAAAAAAAOe0/AXCA-TUsASY6hfoLr0T3h0TBQkox936BQCLcBGAs/s1600/AIRPLANE-WALLPAPER-TUMBLR-IPHONE-BLOG-ALINE-RIBEIRO.jpg) ;"><br><?=$voo->descricao?>
+        <br><br><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?>&nbsp;-&nbsp;<?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?>
+        <br><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?>
+        <br><br> <?=$voo->preco . ' €'?><br>
+        <br><br><br><br><br><br><br>
+        <a href="<?=Url::toRoute('cliente/mostrar', $voo->id)?>" class="btn btn-info" role="button">Ver</a>
+        <br><br>
+        <a href="<?=Url::toRoute('cliente/comprar', $voo->id)?>" class="btn btn-success" role="button">Comprar</a>
+    </div>
+<?php } ?>
+
+    <!-- /container -->
+
+
 <?php Layout::includeLayout('footer')?>
