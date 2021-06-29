@@ -26,14 +26,14 @@ class ClienteController extends BaseAuthController
 
     public function Comprar($id)
     {
-        $this->loginFilterByRole('passageiro');
+        $this->LoginFilterByRole('passageiro');
 
-        $this->loginFilterByRole('passageiro');
-        $voos = voo::all();
-        $aeroportos = aeroporto::all();
-        $escalas = escala::all();
+        $voo = voo::find([$id]);
+        $aeroportoOrigem = aeroporto::find([$voo->idaeroportoorigem]);
+        $aeroportoDestino = aeroporto::find([$voo->idaeroportodestino]);
+        $escala = escala::all();
 
-        return View::make('cliente.comprar', ['voos'=>$voos, 'aeroportos'=>$aeroportos, 'escalas'=>$escalas]);
+        return View::make('cliente.comprar', ['voo'=>$voo, 'aeroportoOrigem'=>$aeroportoOrigem, 'aeroportoDestino'=>$aeroportoDestino, 'escala'=>$escala]);
     }
 
     public function Mostrar($id)
@@ -46,6 +46,17 @@ class ClienteController extends BaseAuthController
             return View::make('cliente.index');
         } else {
             return View::make('cliente.mostrar', ['voo' => $voo]);
+        }
+    }
+
+    public function Pagar($id)
+    {
+        $this->loginFilterByRole('passageiro');
+        $voo = Voo::find([$id]);
+        if (is_null($voo)) {
+        return View::make('cliente.index');
+        } else {
+        return View::make('cliente.pagar', ['voo' => $voo]);
         }
     }
 }

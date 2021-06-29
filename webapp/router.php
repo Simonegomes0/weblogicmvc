@@ -31,6 +31,7 @@ Router::get('cliente/bilhete', 'ClienteController/VerVoos');
 Router::post('cliente/bilhete', 'ClienteController/VerVoos');
 Router::get('cliente/index', 'ClienteController/index');
 Router::get('cliente/comprar', 'ClienteController/Comprar');
+Router::post('cliente/pagar', 'ClienteController/Pagar');
 Router::get('cliente/mostrar', 'ClienteController/Mostrar');
 
 
