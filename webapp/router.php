@@ -57,6 +57,14 @@ Router::get('admin/funcioEliminar', 'AdminController/funcioEliminar');
 //GestorVoo
 
 Router::get('gestorvoo/index', 'GestorVooController/index');
+Router::get('gestorvoo/gestaoVoos', 'GestorVooController/GestaoVoos');
+Router::get('gestorvoo/getVoosForm',   'GestorVooController/getVoosForm');
+Router::post('gestorvoo/voosAdd',   'GestorVooController/voosAdd');
+Router::get('gestorvoo/doUpdatevoos',   'GestorVooController/doUpdatevoos');
+Router::post('gestorvoo/doUpdatevoos',   'GestorVooController/doUpdatevoos');
+Router::get('gestorvoo/voosUpdate',   'GestorVooController/voosUpdate');
+Router::get('gestorvoo/voosEliminar',   'GestorVooController/voosEliminar');
+
 
 //OpCheckIn
 

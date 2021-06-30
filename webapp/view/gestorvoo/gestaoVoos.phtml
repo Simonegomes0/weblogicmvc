@@ -1,0 +1,49 @@
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('adminheader') ?>
+<?php
+$voos = Data::get('voos');
+$aeroportos = Data::get('aeroportos');
+$Voo = new Voo();
+$escalas = Data::get('escalas');
+?>
+
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Voos</li>
+        </ol>
+        <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Aeroportos:</h3></th><th><h3>Distância:</h3></th><th><h3>Preço:</h3></th></th><th><h3>Editar:</h3></th></th><th><h3>Apagar:</h3></th></thead>
+                <tbody>
+                <?php foreach ($voos as $voo) { ?>
+                    <tr>
+                        <td><?=$voo->descricao?></td>
+                        <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?>&nbsp;-&nbsp;<?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
+                        <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
+                        <td><?=$voo->preco . ' €'?></td>
+                        <td>
+                            <a href="<?=Url::toRoute('gestorvoo/voosUpdate', $voo->id)?>" class="btn btn-info" role="button">Gerir</a>
+                        </td>
+                        <td>
+                            <a href="<?=Url::toRoute('gestorvoo/voosEliminar', $voo->id)?>" class="btn btn-success" role="button">Apagar</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <br><br>
+
+    <!-- /container -->
+
+
+<?php Layout::includeLayout('footer')?>
