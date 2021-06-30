@@ -165,7 +165,7 @@ class GestorVooController extends BaseAuthController
         if($escala->is_valid()){
             $escala->save();
             $this->index($escala -> idvoo);
-            Redirect::toRoute('gestorvoo/gestaoAviao');
+            Redirect::toRoute('gestorvoo/gestaoVoos');
         } else {
             Redirect::flashToRoute('gestorvoo/escalaAdd', ['escala' => $escala]);
         }

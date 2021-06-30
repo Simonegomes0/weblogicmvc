@@ -20,16 +20,14 @@ $escalas = Data::get('escalas');
         </ol>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Aeroportos:</h3></th><th><h3>Distância:</h3></th><th><h3>Preço:</h3></th></th><th><h3>Escalas:</h3></th></th><th><h3>Apagar:</h3></th></thead>
+                <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Distância:</h3></th></th><th><h3>Escalas:</h3></th></th><th><h3>Apagar:</h3></th></thead>
                     <tbody>
                     <?php foreach ($voos as $voo) { ?>
                         <tr>
                             <td><?=$voo->descricao?></td>
-                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?> - <?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
                             <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
-                            <td><?=$voo->preco . ' €'?></td>
                             <td>
-                                <a href="<?=Url::toRoute('gestorvoo/gestaoEscalas', $voo->id)?>" class="btn color-blue" role="button">Escala</a>
+                                <a href="<?=Url::toRoute('gestorvoo/gestaoEscalas', $voo->id)?>" class="btn color-orange" role="button">Escala</a>
                             </td>
                             <td>
                                 <a href="<?=Url::toRoute('gestorvoo/voosEliminar', $voo->id)?>" class="btn color-red" role="button">Apagar</a>
