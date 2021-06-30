@@ -12,7 +12,7 @@ $Voo = new Voo();
     <div class="container">
 
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="<?=Url::toRoute('gestorvoo/index')?>">Home</a></li>
             <li class="active">Escalas</li>
         </ol>
 
@@ -34,7 +34,7 @@ $Voo = new Voo();
                             <td><?=$escala->distancia?>km</td>
                             <td><?=$escala->custo . ' €'?></td>
                             <td>
-                                <a href="<?=Url::toRoute('escala/edit', $escala->id)?>" class="btn color-green" role="button">Editar</a>
+                                <a href="<?=Url::toRoute('gestorvoo/escalaUpdate', $escala->id)?>" class="btn color-green" role="button">Editar</a>
                             </td>
                             <td>
                                 <a href="<?=Url::toRoute('escala/destroy', $escala->id)?>" class="btn color-red" role="button">Eliminar</a>

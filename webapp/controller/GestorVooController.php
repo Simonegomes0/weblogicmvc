@@ -170,4 +170,31 @@ class GestorVooController extends BaseAuthController
             Redirect::flashToRoute('gestorvoo/escalaAdd', ['escala' => $escala]);
         }
     }
+
+    public function escalaUpdate($id)
+    {
+        $escala = Escala::find([$id]);
+
+        $aeroportos = Aeroporto::all();
+
+        if (is_null($escala)) {
+        } else {
+            return View::make('gestorvoo.escalaUpdate', ['escala' => $escala, 'aeroportos' => $aeroportos]);
+        }
+    }
+
+    public function doUpdateEscala($id)
+    {
+        $this->loginFilterByRole('gestorvoo');
+
+        $escala = Escala::find([$id]);
+        $escala->update_attributes(Post::getAll());
+        if($escala->is_valid()){
+            $escala->save();
+            Redirect::toRoute('gestorvoo/index');
+        } else {
+            //redirect to form with data and errors
+            Redirect::flashToRoute('gestorvoo/escalaUpdate', ['escala' => $escala]);
+        }
+    }
 }

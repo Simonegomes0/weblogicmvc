@@ -65,6 +65,9 @@ Router::get('gestorvoo/aviaoUpdate',   'GestorVooController/aviaoUpdate');
 Router::get('gestorvoo/gestaoEscalas', 'GestorVooController/gestaoEscalas');
 Router::get('gestorvoo/getEscalaForm', 'GestorVooController/getEscalaForm');
 Router::post('gestorvoo/escalaAdd', 'GestorVooController/escalaAdd');
+Router::get('gestorvoo/escalaUpdate', 'GestorVooController/escalaUpdate');
+Router::get('gestorvoo/doUpdateEscala', 'GestorVooController/doUpdateEscala');
+Router::post('gestorvoo/doUpdateEscala', 'GestorVooController/doUpdateEscala');
 
 //OpCheckIn
 Router::get('opcheckin/index', 'OpCheckInController/index');
