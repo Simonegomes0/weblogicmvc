@@ -12,19 +12,30 @@ Layout::includeLayout('adminheader');
             <li><a href="index">Home</a></li>
             <li class="active">Aeroportos</li>
         </ol>
-        <div class="col-sm-6">
-            <h3>Gestão Aeroportos</h3>
-            <p>
-                <a href="<?=Url::toRoute('admin/GestaoAero')?>" class="btn btn-info" role="button">Entrar</a>
-            </p>
-            <br>
-            <h3>Gestão Funcionários</h3>
-            <p>
-                <a href="<?=Url::toRoute('admin/Funcionario')?>" class="btn btn-info" role="button">Entrar</a>
-            </p>
-        </div>
-        </div> <!-- /row -->
+        <!-- /row -->
 
     </div>	<!-- /container -->
 
+    <ul class="card-list">
+        <li class="card">
+            <a class="card-image" target="_blank" style="background-image: url(https://images5.alphacoders.com/863/863248.jpg);">
+
+            </a>
+            <a class="card-description" style="text-decoration: none">
+                <h5>Gestão de Aeroportos</h5>
+                <a href="<?=Url::toRoute('admin/GestaoAero')?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button">Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16">
+            </a>
+            </a>
+        </li>
+        <li class="card">
+            <a class="card-image" target="_blank" style="background-image: url(https://www.diariodoaco.com.br/images/noticias/75617/20200207113911_ht3Er50xjk.jpg);">
+
+            </a>
+            <a class="card-description" style="text-decoration: none">
+                <h5>Gestão de Funcionários</h5>
+                <a href="<?=Url::toRoute('admin/Funcionario')?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button"> Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16">
+            </a>
+            </a>
+        </li>
+    </ul>
 <?php Layout::includeLayout('footer')?>
