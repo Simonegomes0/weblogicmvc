@@ -12,48 +12,54 @@ Layout::includeLayout('adminheader') ?>
         <div class="row">
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
-                <header class="page-header">
+                <header>
                     <h1 class="page-title">Gerir <?=$aeroporto->nome?></h1>
                 </header>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <hr>
-                        <form class="form-horizontal" method="post" action="<?=Url::toRoute('admin/doUpdateAero', $aeroporto->id)?>">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="name">Nome:</label>
-                                <div class="col-sm-6">
-                                    <input type="text" value="<?=$aeroporto->nome?>" class="form-control" required name="nome">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="name">Localidade:</label>
-                                <div class="col-sm-6">
-                                    <input type="text" required value="<?=$aeroporto->localidade?>" class="form-control" name="localidade">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="name">País:</label>
-                                <div class="col-sm-6">
-                                    <input type="text" required value="<?=$aeroporto->pais?>" class="form-control" name="pais">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="name">Telefone:</label>
-                                <div class="col-sm-6">
-                                    <input type="text" required value="<?=$aeroporto->telefone?>" class="form-control" name="telefone">
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="col-lg-4 text-right">
-                                <button class="btn btn-default" type="submit">Editar</button>
-                            </div>
+
+                <hr>
+                <form class="form-horizontal" method="post" style="margin-left: 220px;" action="<?=Url::toRoute('admin/doUpdateAero', $aeroporto->id)?>">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Nome:</label>
+                        <div class="col-sm-6">
+                            <input type="text" value="<?=$aeroporto->nome?>" class="form-control" required name="nome">
+                        </div>
                     </div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Localidade:</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$aeroporto->localidade?>" class="form-control" name="localidade">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">País:</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$aeroporto->pais?>" class="form-control" name="pais">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Telefone:</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$aeroporto->telefone?>" class="form-control" name="telefone">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-lg-4 text-right">
+                        <button class="btn color-green" style="margin-left: 300px;" type="submit" onclick="msg()">Editar</button>
+                    </div>
         </div>
-        </article>
-        <!-- /Article -->
+
+        </form>
+    </div>
+    </div>
+    <script>
+        function msg(){
+            alert("Aeroporto editado com sucesso!")
+        }
+    </script>
+    </article>
+    <!-- /Article -->
     </div>
     </div>	<!-- /container -->
+
 
 <?php Layout::includeLayout('footer') ?>

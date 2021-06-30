@@ -10,7 +10,7 @@ $aeroportos = Data::get('aeroportos');
     <div class="container">
 
         <ol class="breadcrumb">
-            <li><a href="index">Home</a></li>
+            <li><a href="index"style="color: #FF9B22;">Home</a></li>
             <li class="active">Aeroportos</li>
         </ol>
 
@@ -27,16 +27,21 @@ $aeroportos = Data::get('aeroportos');
                             <td><?=$aeroporto->pais?></td>
                             <td><?=$aeroporto->telefone?></td>
                             <td>
-                                <a href="<?=Url::toRoute('admin/aeroUpdate', $aeroporto->id)?>" class="btn btn-success" role="button">Gerir</a>
+                                <a href="<?=Url::toRoute('admin/aeroUpdate', $aeroporto->id)?>" class="btn color-green" role="button">Gerir</a>
                             </td>
                             <td>
-                                <a href="<?=Url::toRoute('admin/AeroEliminar', $aeroporto->id)?>" class="btn btn-success" role="button">Apagar</a>
+                                <a href="<?=Url::toRoute('admin/AeroEliminar', $aeroporto->id)?>" class="btn color-red" role="button" onclick="msg()">Apagar</a>
                             </td>
                         </tr>
                     <?php } ?>
                     </tbody>
                 </table>
             </div>
+            <script>
+                function msg(){
+                    alert("Aeroporto apagado com sucesso!");
+                }
+            </script>
             <h3>Adicionar Aeroportos:</h3>
             <p>
                 <a href="<?=Url::toRoute('admin/aeroportos')?>" class="btn btn-info" role="button">Entrar</a>

@@ -10,14 +10,14 @@ $operadores = Data::get('operador')
     <div class="container">
 
         <ol class="breadcrumb">
-            <li><a href="index">Home</a></li>
+            <li><a href="index" style="color: #FF9B22">Home</a></li>
             <li class="active">Funcionários</li>
         </ol>
-        <h2 class="text-left top-space">Funcionários</h2>
+        <h2 class="text-left top-space" style="color: #FF9B22">Funcionários</h2>
         <h2 class="top-space"></h2>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-striped"><thead><th><h3>Role:</h3></th><th><h3>Nome:</h3></th><th><h3>Localidade:</h3></th><th><h3>País:</h3></th><th><h3>Telefone:</h3></th><th><h3>Editar:</h3></th><th><h3>Apagar:</h3></th></thead>
+                <table class="table table-striped"><thead><th><h3 style="margin-left: 5px;">Role:</h3></th><th><h3 style="margin-left: 10px";>Nome:</h3></th><th><h3 style="margin-left: 60px;">Localidade:</h3></th><th><h3 style="margin-left: 40px;">País:</h3></th><th><h3 style="margin-left: 60px;">Telefone:</h3></th><th><h3 style="margin-left: 40px;">Editar:</h3></th><th><h3 style="margin-left: 40px;">Apagar:</h3></th></thead>
                     <tbody>
                     <?php foreach ($operadores as $operador) { ?>
                         <tr>
@@ -27,13 +27,18 @@ $operadores = Data::get('operador')
                             <td><?=$operador->email?></td>
                             <td><?=$operador->telefone?></td>
                             <td>
-                                <a href="<?=Url::toRoute('admin/funcioUpdate', $operador->id)?>" class="btn btn-success" role="button">Gerir</a>
+                                <a href="<?=Url::toRoute('admin/funcioUpdate', $operador->id)?>" class="color-green btn" role="button">Gerir</a>
                             </td>
                             <td>
-                                <a href="<?=Url::toRoute('admin/funcioEliminar', $operador->id)?>" class="btn btn-success" role="button">Apagar</a>
+                                <a href="<?=Url::toRoute('admin/funcioEliminar', $operador->id)?>" class="color-red btn " role="button" onclick="msg()">Apagar</a>
                             </td>
                         </tr>
                     <?php } ?>
+                    <script>
+                        function  msg(){
+                            alert("Funcionário apagado com sucesso!");
+                        }
+                    </script>
                     </tbody>
                 </table>
             </div>
@@ -41,7 +46,7 @@ $operadores = Data::get('operador')
         </div> <!-- /row -->
         <h3>Adicionar Funcionários:</h3>
         <p>
-            <a href="<?=Url::toRoute('admin/funcionarioForm')?>" class="btn btn-info" role="button">Adicionar</a>
+            <a href="<?=Url::toRoute('admin/funcionarioForm')?>" class="btn btn-action" role="button">Adicionar</a>
         </p>
     </div>	<!-- /container -->
 
