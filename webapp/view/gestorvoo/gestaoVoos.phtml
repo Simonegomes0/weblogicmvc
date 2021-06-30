@@ -15,7 +15,7 @@ $escalas = Data::get('escalas');
     <div class="container">
 
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index">Home</a></li>
             <li class="active">Voos</li>
         </ol>
         <div class="row">
@@ -41,7 +41,10 @@ $escalas = Data::get('escalas');
             </div>
         </div>
     </div>
-    <br><br>
+    <br>
+    <h3>Inserir Voo</h3>
+    <br>
+    <a href="<?=Url::toRoute('gestorvoo/gestaoVoos')?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button">Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16"/>
 
     <!-- /container -->
 
