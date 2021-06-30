@@ -1,22 +1,26 @@
 <?php
+use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
-Layout::includeLayout('opheader'); ?>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-            </div>
-        </div>
-    </header>
-    <!-- /Header -->
-
-    <!-- container  Aviões -->
+Layout::includeLayout('adminheader');
+?>
+    <!-- container -->
     <div class="container">
 
-    </div>
-    <!-- /container -->
+        <ol class="breadcrumb">
+            <li><a href="index">Home</a></li>
+            <li class="active">Voos</li>
+        </ol>
+        <div class="col-sm-6">
+            <h3>Gestão Voos</h3>
+            <p>
+                <a href="<?=Url::toRoute('gestorvoo/gestaoVoos')?>" class="btn btn-info" role="button">Entrar</a>
+            </p>
+            <br>
+        </div>
+    </div> <!-- /row -->
+
+    </div>	<!-- /container -->
 
 <?php Layout::includeLayout('footer')?>
