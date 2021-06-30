@@ -135,3 +135,15 @@ body {
 .card-5 {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+
+/* Boão Apagar */
+.color-red{
+    background-color: #F02C03;
+    color: white;
+}
+
+/* Botão Editar */
+.color-green{
+    background-color: #108F0B;
+    color: white;
+}
