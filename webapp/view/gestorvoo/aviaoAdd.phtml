@@ -3,19 +3,19 @@ use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\ErrMgr;
 use ArmoredCore\WebObjects\URL;
 Layout::includeLayout('gestorheader');
- $aviao = Data::get('aviao');
+$aviao = Data::get('aviao');
 ErrMgr::attach($aviao); ?>
     <!-- container -->
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="gestaoAero">Home</a></li>
-            <li class="active"></li>
+            <li class="active">Adicionar Voo</li>
         </ol>
         <div class="row">
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">Adicionar Voo</h1>
+                    <h1 class="page-title" style="color: #5bc0de;">Adicionar Voo</h1>
                 </header>
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">

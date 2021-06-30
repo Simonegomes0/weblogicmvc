@@ -20,7 +20,7 @@ ErrMgr::attach($escala);
 
         <div class="row">
 
-            <!-- Article main content -->
+            <!-- Adicionar escala -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
                     <h1 class="page-title">Nova Escala</h1>
@@ -34,23 +34,6 @@ ErrMgr::attach($escala);
                                 <div>
                                     <input type="hidden" value="<?=$idvoo?>" name="idvoo">
                                 </div>
-
-                                <div class="top-margin">
-                                    <label>Data de Partida: <span class="text-danger">*</span></label>
-                                    <input type="date" value="<?=$escala->dataorigem?>" name="dataorigem" class="form-control">
-                                    <?= ErrMgr::bind('dataorigem') ?>
-                                </div>
-
-                                <div class="top-margin">
-                                    <label>Data de Chegada:</label>
-                                    <input type="date" value="<?=$escala->datadestino?>" name="datadestino" class="form-control">
-                                    <?= ErrMgr::bind('datadestino')?>
-                                </div>
-                                <div class="top-margin">
-                                    <label>Distância:</label>
-                                    <input type="text" value="<?=$escala->distancia?>" name="distancia" class="form-control" placeholder="Introduza a distância (distancia)">
-                                    <?= ErrMgr::bind('distancia') ?>
-                                </div>
                                 <div class="top-margin">
                                     <label>Aeroporto de origem:</label>
                                     <?php
@@ -63,7 +46,7 @@ ErrMgr::attach($escala);
                                     ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Aeroporto de destino:<span class="text-danger">*</span></label>
+                                    <label>Aeroporto de destino:</label>
                                     <?php
                                     echo('<select name="idaeroportodestino" class="form-control">');
                                     foreach($aeroportos as $aeroporto)
@@ -72,6 +55,22 @@ ErrMgr::attach($escala);
                                     }
                                     echo('</select>');
                                     ?>
+                                </div>
+                                <div class="top-margin">
+                                    <label>Data de Partida:</label>
+                                    <input type="date" value="<?=$escala->dataorigem?>" name="dataorigem" class="form-control">
+
+                                </div>
+
+                                <div class="top-margin">
+                                    <label>Data de Chegada:</label>
+                                    <input type="date" value="<?=$escala->datadestino?>" name="datadestino" class="form-control">
+                                </div>
+
+
+                                <div class="top-margin">
+                                    <label>Distância:</label>
+                                    <input type="text" value="<?=$escala->distancia?>" name="distancia" class="form-control" placeholder="Introduza a distância (distancia)">
                                 </div>
                                 <input type="hidden">
                                 <hr>
