@@ -60,25 +60,26 @@ values
 (1,'Lisboa-Madrid',265.00,1,2),
 (2,'Londres-Dubai',679.00,3,4);
 
-
+drop table escalas;
 CREATE TABLE escalas (
-  idEscala int(11) NOT NULL AUTO_INCREMENT,
+  id int(11) NOT NULL AUTO_INCREMENT,
   idaeroportoorigem int(11) DEFAULT NULL,
   idaeroportodestino int(11) DEFAULT NULL,
   idVoo int(11) DEFAULT NULL,
   distancia double NOT NULL,
   dataorigem date NOT NULL,
   datadestino DATE NOT NULL,
-  CONSTRAINT pk_idEscala PRIMARY KEY(idEscala),
+  custo decimal(7,2) DEFAULT NULL,
+  CONSTRAINT pk_id PRIMARY KEY(id),
   CONSTRAINT fk_escalas_idaeroportoorigem FOREIGN KEY (idaeroportoorigem) references aeroportos(id),
   CONSTRAINT fk_escalas_idaeroportodestino FOREIGN KEY (idaeroportodestino) references aeroportos(id),
   CONSTRAINT fk_escalas_idVoo FOREIGN KEY (idVoo) references voos(id)
 ) ENGINE = InnoDB;
 
-insert into escalas(idEscala, idaeroportoorigem, idaeroportodestino, idVoo, distancia, dataorigem, datadestino)
+insert into escalas(id, idaeroportoorigem, idaeroportodestino, idVoo, distancia, dataorigem, datadestino, custo)
 values
-(1, 1, 2, 1, 1382, 1980-12-17, 1990-12-17),
-(2, 3, 4, 2, 5076, 2000-12-17, 210-12-17);
+(1, 1, 2, 1, 1382,'2021-06-21', '2021-06-24', 20),
+(2, 3, 4, 2, 5076, '2021-06-22', '2021-06-26', 50);
 
 CREATE TABLE aviao (
   idAviao  int(11) NOT NULL AUTO_INCREMENT,

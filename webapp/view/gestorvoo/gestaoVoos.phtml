@@ -25,7 +25,7 @@ $escalas = Data::get('escalas');
                     <?php foreach ($voos as $voo) { ?>
                         <tr>
                             <td><?=$voo->descricao?></td>
-                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?>&nbsp;-&nbsp;<?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
+                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?> - <?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
                             <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
                             <td><?=$voo->preco . ' €'?></td>
                             <td>
