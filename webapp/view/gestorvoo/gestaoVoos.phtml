@@ -25,11 +25,11 @@ $escalas = Data::get('escalas');
                     <?php foreach ($voos as $voo) { ?>
                         <tr>
                             <td><?=$voo->descricao?></td>
-                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?> - <?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
+                            <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?>&nbsp;-&nbsp;<?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
                             <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
                             <td><?=$voo->preco . ' €'?></td>
                             <td>
-                                <a href="<?=Url::toRoute('gestorvoo/gestaoEscalas', $voo->id)?>" class="btn color-blue" role="button">Escala</a>
+                                <a href="<?=Url::toRoute('gestorvoo/gestaoEscalas', $voo->id)?>" class="btn color-orange" role="button">Escala</a>
                             </td>
                             <td>
                                 <a href="<?=Url::toRoute('gestorvoo/voosEliminar', $voo->id)?>" class="btn color-red" role="button">Apagar</a>
