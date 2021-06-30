@@ -2,7 +2,6 @@ Create database if not exists FlighTravelAir;
 Use FlighTravelAir;
 
 
-
 CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT,
   nome varchar(80) NOT NULL,
@@ -21,7 +20,8 @@ CREATE TABLE users (
 insert into users values
 (1, 'Jorge', 'null', 'null', 123455432, 987654321, 'admin', 'admin', 'admin'),
 (2, 'Carlos', 'null', 'null', 123443215, 987654321, 'gestorvoo', 'gestorvoo', 'gestorvoo'),
-(3, 'Maria', 'null', 'null', 543214321, 987654321, 'opcheckin', 'opcheckin', 'opcheckin');
+(3, 'Maria', 'null', 'null', 543214321, 987654321, 'opcheckin', 'opcheckin', 'opcheckin'),
+(4, 'Sofia', 'null', 'null', 300128765, 917623789, 'gestormarketing', 'gestormarketing', 'gestormarketing');
 
 CREATE TABLE aeroportos (
   id int(11) NOT NULL AUTO_INCREMENT,
