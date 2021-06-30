@@ -43,33 +43,29 @@ class GestorVooController extends BaseAuthController
         }
     }
 
-    public function doUpdatevoos($id)
+    public function doUpdatevoos()
     {
-        $this->loginFilterByRole('gestorvoo');
-        $voos = Voo::find([$id]);
-        $aeroportos = aeroporto::find([$id]);
-        $aeroportos -> update_attributes(Post::getAll());
-        $aeroportos -> save;
-        $voos->update_attributes(Post::getAll());
-        $voos->save();
+        $voo = new Voo(Post::getAll());
 
-
-        Redirect::toRoute('gestorvoo/gestaoVoos');
+        if($voo->is_valid()){
+            $voo->save();
+            Redirect::toRoute('gestorvoo/gestaoVoos');
+        } else {
+            //redirect to form with data and errors
+            Redirect::flashToRoute('gestorvoo/doUpdatevoos', ['voo' => $voo]);
+        }
     }
 
     public function voosAdd()
     {
-        $this->loginFilterByRole('gestorvoo');
-        $aeroportos = aeroporto::all();
-        $voos = new Voo(Post::getAll());
-        $aeroportoOrigem = aeroporto::find([$voos->idaeroportoorigem]);
-        $aeroportoDestino = aeroporto::find([$voos->idaeroportodestino]);
+        $voo = new Voo(Post::getAll());
 
-        if ($voos->is_valid()) {
-            $voos->save();
-            Redirect::toRoute('gestorvoo/gestaoVoos');
+        if($voo->is_valid()){
+            $voo->save();
+            Redirect::toRoute('voo/index');
         } else {
-            return View::make('gestorvoo.voosAdd', ['voos' => $voos, 'aeroportos'=>$aeroportos, 'aeroportoOrigem'=>$aeroportoOrigem, 'aeroportoDestino'=>$aeroportoDestino]);
+            //redirect to form with data and errors
+            Redirect::flashToRoute('voo/create', ['voo' => $voo]);
         }
     }
 
@@ -147,9 +143,31 @@ class GestorVooController extends BaseAuthController
         return View::make('gestorvoo.gestaoEscalas', ['voo'=>$voo]);
     }
 
-    public function escalaAdd($id)
+    public function getEscalaForm($id)
     {
         $aeroportos = Aeroporto::all();
         return View::make('gestorvoo.escalaAdd', ['aeroportos' => $aeroportos, 'idvoo' => $id]);
+    }
+
+    public function escalaAdd()
+    {
+        $escala = new Escala(Post::getAll());
+        $datapartida = strtotime(Post::get('dataorigem'));
+        $datachegada = strtotime(Post::get('datadestino'));
+
+        $datapartida = date('Y-m-d H:i:s', $datapartida);
+        $datachegada = date('Y-m-d H:i:s', $datachegada);
+
+        $escala -> dataorigem = $datapartida;
+        $escala -> datadestino = $datachegada;
+
+
+        if($escala->is_valid()){
+            $escala->save();
+            $this->index($escala -> idvoo);
+            Redirect::toRoute('gestorvoo/gestaoAviao');
+        } else {
+            Redirect::flashToRoute('gestorvoo/escalaAdd', ['escala' => $escala]);
+        }
     }
 }

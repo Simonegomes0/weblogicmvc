@@ -26,29 +26,29 @@ ErrMgr::attach($escala);
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <hr>
-                            <form method="post" action="<?=Url::toRoute('escala/store')?>">
+                            <form method="post" action="<?=Url::toRoute('gestorvoo/escalaAdd')?>">
                                 <div>
                                     <input type="hidden" value="<?=$idvoo?>" name="idvoo">
                                 </div>
 
                                 <div class="top-margin">
-                                    <label>Data e hora de origem <span class="text-danger">*</span></label>
+                                    <label>Data de Partida: <span class="text-danger">*</span></label>
                                     <input type="date" value="<?=$escala->dataorigem?>" name="dataorigem" class="form-control">
                                     <?= ErrMgr::bind('dataorigem') ?>
                                 </div>
 
                                 <div class="top-margin">
-                                    <label>Data e hora de destino <span class="text-danger">*</span></label>
+                                    <label>Data de Chegada:</label>
                                     <input type="date" value="<?=$escala->datadestino?>" name="datadestino" class="form-control">
                                     <?= ErrMgr::bind('datadestino')?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Distância<span class="text-danger">*</span></label>
+                                    <label>Distância</label>
                                     <input type="text" value="<?=$escala->distancia?>" name="distancia" class="form-control" placeholder="Introduza a distância (distancia)">
                                     <?= ErrMgr::bind('distancia') ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Aeroporto de origem<span class="text-danger">*</span></label>
+                                    <label>Aeroporto de origem</label>
                                     <?php
                                     echo('<select name="idaeroportoorigem" class="form-control">');
                                     foreach($aeroportos as $aeroporto)
@@ -68,11 +68,6 @@ ErrMgr::attach($escala);
                                     }
                                     echo('</select>');
                                     ?>
-                                </div>
-                                <div class="top-margin">
-                                    <label>Custo da escala <span class="text-danger">*</span></label>
-                                    <input type="text" value="<?=$escala->custo?>" name="custo" class="form-control" placeholder="Introduza o valor">
-                                    <?= ErrMgr::bind('custo') ?>
                                 </div>
                                 <input type="hidden">
                                 <hr>
