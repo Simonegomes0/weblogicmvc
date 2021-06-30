@@ -45,7 +45,16 @@ use ArmoredCore\WebObjects\URL;
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
-                <li class="active"><a href="<?= URL::toRoute('cliente/index')?>">Home</a></li>
+                <li><a href="<?= URL::toRoute('cliente/index')?>">Home</a></li>
+                <li><a href="<?= URL::toRoute('cliente/dadosUpdate')?>">Definições</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" >Consultar<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?=Url::toRoute('home/worksheet')?>">Históricos de passagens</a></li>
+                        <li><a href="<?= Url::toRoute('devtools/restcontrollerform')?>">Voos</a></li>
+                        <li><a href="<?= Url::toRoute('devtools/restcontrollerform')?>">Bilhetes</a></li>
+                    </ul>
+                </li>
 
                 <li><a class="btn" href="<?= URL::toRoute('login/logout')?>">LOGOUT</a></li>
             </ul>
