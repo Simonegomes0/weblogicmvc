@@ -31,7 +31,7 @@ $Voo = new Voo();
                             <td><?=date_format($escala->dataorigem, 'd-m-Y');?></td>
                             <td><?=$escala->aeroportodestino->nome?></td>
                             <td><?=date_format($escala->datadestino, 'd-m-Y');?></td>
-                            <td><?=$escala->distancia?></td>
+                            <td><?=$escala->distancia?>km</td>
                             <td><?=$escala->custo . ' €'?></td>
                             <td>
                                 <a href="<?=Url::toRoute('escala/edit', $escala->id)?>" class="btn color-green" role="button">Editar</a>
