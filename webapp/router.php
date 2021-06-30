@@ -59,6 +59,7 @@ Router::get('gestorvoo/voosEliminar',   'GestorVooController/voosEliminar');
 //OpCheckIn
 Router::get('opcheckin/index', 'OpCheckInController/index');
 
-
+//OpMarketing
+Router::get('opmarketing/index', 'OpMarketingController');
 
 /************** End of URLEncoder Routing Rules ************************************/
