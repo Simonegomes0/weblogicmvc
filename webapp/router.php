@@ -70,6 +70,6 @@ Router::post('gestorvoo/escalaAdd', 'GestorVooController/escalaAdd');
 Router::get('opcheckin/index', 'OpCheckInController/index');
 
 //OpMarketing
-Router::get('opmarketing/index', 'OpMarketingController');
+Router::get('opmarketing/index', 'OpMarketingController/index');
 
 /************** End of URLEncoder Routing Rules ************************************/

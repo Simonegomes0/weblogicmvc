@@ -13,6 +13,10 @@ ErrMgr::attach($escala);
 
     <!-- container -->
     <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="">Home</a></li>
+            <li class="active">Nova Escala</li>
+        </ol>
 
         <div class="row">
 
@@ -43,12 +47,12 @@ ErrMgr::attach($escala);
                                     <?= ErrMgr::bind('datadestino')?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Distância</label>
+                                    <label>Distância:</label>
                                     <input type="text" value="<?=$escala->distancia?>" name="distancia" class="form-control" placeholder="Introduza a distância (distancia)">
                                     <?= ErrMgr::bind('distancia') ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Aeroporto de origem</label>
+                                    <label>Aeroporto de origem:</label>
                                     <?php
                                     echo('<select name="idaeroportoorigem" class="form-control">');
                                     foreach($aeroportos as $aeroporto)
@@ -59,7 +63,7 @@ ErrMgr::attach($escala);
                                     ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Aeroporto de destino<span class="text-danger">*</span></label>
+                                    <label>Aeroporto de destino:<span class="text-danger">*</span></label>
                                     <?php
                                     echo('<select name="idaeroportodestino" class="form-control">');
                                     foreach($aeroportos as $aeroporto)
@@ -69,15 +73,11 @@ ErrMgr::attach($escala);
                                     echo('</select>');
                                     ?>
                                 </div>
-                                <div class="top-margin">
-                                    <label>Custo:</label>
-                                    <input type="text" value="<?=$escala->custo?>" name="custo" class="form-control" placeholder="Introduza o valor">
-                                </div>
                                 <input type="hidden">
                                 <hr>
 
                                 <div class="col-lg-4 text-right">
-                                    <button class="btn btn-action" type="submit">Criar</button>
+                                    <button class="btn btn-info" type="submit" style="margin-top: -10px; margin-left: 180px;">Criar</button>
                                 </div>
                         </div>
                         </form>

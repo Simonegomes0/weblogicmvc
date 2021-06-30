@@ -18,12 +18,13 @@ $aviao = Data::get('aviao');
     </ol>
     <div class="row">
         <div class="col-sm-12">
-            <table class="table table-striped"><thead><th><h3>Referência:</h3></th><th><h3>Lotação:</h3></th></th><th><h3>Editar:</h3></th></th><th><h3>Apagar:</h3></th></thead>
+            <table class="table table-striped"><thead><th><h3>Referência:</h3></th><th><h3>Lotação:</h3></th><th><h3>Tipo de Avião:</h3></th></th><th><h3 style="margin-left: 45px;">Editar:</h3></th></th><th><h3 style="margin-left: 45px;">Apagar:</h3></th></thead>
                 <tbody>
                 <?php foreach ($aviao as $aviao) { ?>
                     <tr>
                         <td><?=$aviao->referencia?></td>
                         <td><?=$aviao->lotacao?></td>
+                        <td><?=$aviao->tipoaviao?></td>
                         <td>
                             <a href="<?=Url::toRoute('gestorvoo/aviaoUpdate', $aviao->id)?>" class="btn color-green" role="button">Gerir</a>
                         </td>
