@@ -1,0 +1,50 @@
+<?php use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\URL;
+Layout::includeLayout('gestorheader');
+ $aviao = Data::get('aviao');
+ErrMgr::attach($aviao); ?>
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="gestaoAero">Home</a></li>
+            <li class="active"></li>
+        </ol>
+        <div class="row">
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Adicionar Voo</h1>
+                </header>
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form method="post" action=<?=URL::toRoute('gestorvoo/aviaoAdd') ?>>
+                                <div class="top-margin">
+                                    <label>Referência:</label>
+                                    <input type="text" value="<?=$aviao->referencia ?>" name="referencia" class="form-control">
+                                </div>
+                                <div class="top-margin">
+                                    <label>Lotação</label>
+                                    <input type="text" value="<?=$aviao->lotacao ?>" name="lotacao" class="form-control">
+                                </div>
+                                <div class="top-margin">
+                                    <label>Tipo de Avião:</label>
+                                    <input type="text" value="<?=$aviao->tipoAviao ?>" name="tipoAviao" class="form-control">
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-12 text-right">
+                                        <button class="button button2" style="margin-right:180px; " type="submit" onclick="msg()">Adicionar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- /Article -->
+        </div>
+    </div> <!-- /container -->
+<?php Layout::includeLayout('footer') ?>

@@ -3,7 +3,7 @@ use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
-Layout::includeLayout('adminheader') ?>
+Layout::includeLayout('gestorheader') ?>
 <?php
 $voos = Data::get('voos');
 $aeroportos = Data::get('aeroportos');
@@ -20,7 +20,7 @@ $escalas = Data::get('escalas');
         </ol>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Aeroportos:</h3></th><th><h3>Distância:</h3></th><th><h3>Preço:</h3></th></th><th><h3>Editar:</h3></th></th><th><h3>Apagar:</h3></th></thead>
+                <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Aeroportos:</h3></th><th><h3>Distância:</h3></th><th><h3>Preço:</h3></th></th><th><h3>Escalas:</h3></th><th><h3>Editar:</h3></th></th><th><h3>Apagar:</h3></th></thead>
                     <tbody>
                     <?php foreach ($voos as $voo) { ?>
                         <tr>
@@ -28,6 +28,9 @@ $escalas = Data::get('escalas');
                             <td><?=$Voo->NomeAero($aeroportos, $voo->idaeroportoorigem)?>&nbsp;-&nbsp;<?=$Voo->NomeAero($aeroportos, $voo->idaeroportodestino)?></td>
                             <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
                             <td><?=$voo->preco . ' €'?></td>
+                            <td>
+                                <a href="<?=Url::toRoute('gestorvoo/gestaoEscalas', $voo->id)?>" class="btn color-blue" role="button">Escala</a>
+                            </td>
                             <td>
                                 <a href="<?=Url::toRoute('gestorvoo/voosUpdate', $voo->id)?>" class="btn color-green" role="button">Gerir</a>
                             </td>
@@ -44,7 +47,7 @@ $escalas = Data::get('escalas');
     <br>
     <h3>Inserir Voo</h3>
     <br>
-    <a href="<?=Url::toRoute('gestorvoo/gestaoVoos')?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button">Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16"/>
+    <a href="<?=Url::toRoute('gestorvoo/getVoosForm')?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button">Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16"/>
 
     <!-- /container -->
 

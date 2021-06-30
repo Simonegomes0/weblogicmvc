@@ -1,0 +1,57 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('gestorheader') ?>
+<?php
+$voo = Data::get('voo');
+$Voo = new Voo();
+?>
+
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Escalas</li>
+        </ol>
+
+        <h2 class="text-left top-space">Escalas</h2>
+        <h2 class="top-space"></h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Voo: <?=$voo->descricao?></h1>
+            </div>
+            <div class="col-sm-12">
+                <table class="table table-striped"><thead><th><h3>Aeroporto Origem:</h3></th><th><h3>Data Origem:</h3></th><th><h3>Aeroporto Destino:</h3></th><th><h3>Data Destino:</h3></th><th><h3>Distância:</h3></th><th><h3>Custo:</h3></th><th><h3>Editar:</h3></th><th><h3>Eliminar:</h3></th></thead>
+                    <tbody>
+                    <?php foreach ($voo -> escalas as $escala) { ?>
+                        <tr>
+                            <td><?=$escala->aeroportoorigem->nome?></td>
+                            <td><?=date_format($escala->dataorigem, 'd-m-Y');?></td>
+                            <td><?=$escala->aeroportodestino->nome?></td>
+                            <td><?=date_format($escala->datadestino, 'd-m-Y');?></td>
+                            <td><?=$escala->distancia?></td>
+                            <td><?=$escala->custo . ' €'?></td>
+                            <td>
+                                <a href="<?=Url::toRoute('escala/edit', $escala->id)?>" class="btn color-green" role="button">Editar</a>
+                            </td>
+                            <td>
+                                <a href="<?=Url::toRoute('escala/destroy', $escala->id)?>" class="btn color-red" role="button">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <br>
+            <h3>Criar Escala</h3>
+            <br>
+            <a href="<?=Url::toRoute('gestorvoo/escalaAdd', $voo->id)?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button">Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16"/>
+        </div> <!-- /row -->
+
+    </div>	<!-- /container -->
+<?php Layout::includeLayout('footer')?>

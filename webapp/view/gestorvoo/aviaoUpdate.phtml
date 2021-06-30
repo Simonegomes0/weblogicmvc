@@ -1,1 +1,52 @@
-<?php
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('gestorheader') ?>
+<?php $aviao = Data::get('aviao') ?>
+<?php ErrMgr::attach($aviao) ?>
+
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header>
+                    <h1 class="page-title">Gerir <?=$aviao->referencia?></h1>
+                </header>
+                <hr>
+                <form class="form-horizontal" method="post" style="margin-left: 220px;" action="<?=Url::toRoute('gestorvoo/doUpdateAviao', $aviao->id)?>">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Referencia:</label>
+                        <div class="col-sm-6">
+                            <input type="text" value="<?=$aviao->referencia?>" class="form-control" required name="referencia">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Lotacao:</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$aviao->lotacao?>" class="form-control" name="lotacao">
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="col-lg-4 text-right">
+                        <button class="btn color-green" style="margin-left: 300px;" type="submit" onclick="msg()">Editar</button>
+                    </div>
+        </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        function msg(){
+            alert("Aeroporto editado com sucesso!")
+        }
+    </script>
+    </article>
+    <!-- /Article -->
+    </div>
+    </div>	<!-- /container -->
+
+
+<?php Layout::includeLayout('footer') ?>

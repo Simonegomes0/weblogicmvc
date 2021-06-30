@@ -103,12 +103,8 @@ class AdminController extends BaseAuthController
         $operador = User::find([$id]);
         $operador->update_attributes(Post::getAll());
 
-        if($operador->is_valid()){
-            $operador->save();
-            Redirect::toRoute('admin/Funcionario');
-        } else {
-            Redirect::flashToRoute('admin/funcioUpdate', ['operador' => $operador]);
-        }
+        $operador->save();
+        Redirect::toRoute('admin/Funcionario');
     }
 
     public function funcionarioForm()
