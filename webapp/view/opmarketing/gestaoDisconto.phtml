@@ -1,0 +1,47 @@
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('gestorheader') ?>
+<?php
+$voos = Data::get('voos');
+$aeroportos = Data::get('aeroportos');
+$Voo = new Voo();
+$escalas = Data::get('escalas');
+?>
+
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index">Home</a></li>
+            <li class="active">Voos</li>
+        </ol>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Distância:</h3></th></th><th><h3>Aplicar Disconto:</h3></th></thead>
+                    <tbody>
+                    <?php foreach ($voos as $voo) { ?>
+                        <tr>
+                            <td><?=$voo->descricao?></td>
+                            <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
+                            <td>
+                                <a href="<?=Url::toRoute('opmarketing/aplicarDisconto', $voo->id)?>" class="btn color-green" role="button">Aplicar Disconto</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3>Inserir Voo</h3>
+    <br>
+    <a href="<?=Url::toRoute('gestorvoo/getVoosForm')?>" style="margin-top: -10px; margin-left: 15px;" class="btn btn-info" role="button">Entrar</a><svg xmlns="http://www.w3.org/2000/svg" color="grey" width="16" height="16" fill="currentColor" class="bi bi-clouds-fill" viewBox="0 0 16 16"/>
+
+    <!-- /container -->
+
+
+<?php Layout::includeLayout('footer')?>

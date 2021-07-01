@@ -74,5 +74,7 @@ Router::get('opcheckin/index', 'OpCheckInController/index');
 
 //OpMarketing
 Router::get('opmarketing/index', 'OpMarketingController/index');
+Router::get('opmarketing/gestaoDisconto', 'OpMarketingController/gestaoDisconto');
+Router::get('opmarketing/aplicarDisconto', 'OpMarketingController/aplicarDisconto');
 
 /************** End of URLEncoder Routing Rules ************************************/

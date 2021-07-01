@@ -38,7 +38,9 @@ class LoginController extends \ArmoredCore\Controllers\BaseController
                 case 'opcheckin':
                     Redirect::toRoute('opcheckin/index');
                     break;
-
+                case 'opmarketing':
+                    Redirect::toRoute('opmarketing/index');
+                    break;
                 default:
                     Redirect::toRoute('login/login');
             }

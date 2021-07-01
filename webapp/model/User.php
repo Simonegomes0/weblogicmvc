@@ -20,11 +20,11 @@ class User extends ActiveRecord\Model
 
     static $validades_size_of = array(
         array('nome', 'maximum' => 80, 'too_long' => 'O máximo são 80 caracteres'),
-        array('morada', 'maximum' => 100, 'too_long' => 'O máximo são 100 caracteres'),
-        array('email', 'maximum' => 60, 'too_long' => 'O máximo são 60 caracteres'),
+        array('morada', 'maximum' => 100, 'too_long' => 'O máximo são 30 caracteres'),
+        array('email', 'maximum' => 60, 'too_long' => 'O máximo são 30 caracteres'),
         array('nif', 'is' => 9, 'message' => 'Tem de ter 9 numeros!'),
         array('telefone', 'is' => 9, 'message' => 'Tem de ter 9 numeros!'),
-        array('username', 'maximum' => 50, 'too_long' => 'O máximo são 50 caracteres'),
+        array('username', 'maximum' => 50, 'too_long' => 'O máximo são 30 caracteres'),
         array('password', 'maximum' => 30, 'too_long' => 'O máximo são 30 caracteres'),
         array('role', 'maximum' => 20, 'too_long' => 'O máximo são 20 caracteres'),
     );
@@ -34,6 +34,6 @@ class User extends ActiveRecord\Model
     );
 
     static $validates_inclusion_of = array(
-        array('role', 'in' => array('passageiro', 'opcheckin', 'gestorvoo', 'admin'))
+        array('role', 'in' => array('passageiro', 'opmarketing', 'opcheckin', 'gestorvoo', 'admin'))
     );
 }
