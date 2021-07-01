@@ -15,9 +15,11 @@ $escalas = Data::get('escalas');
     <div class="container">
 
         <ol class="breadcrumb">
-            <li><a href="index">Home</a></li>
-            <li class="active">Voos</li>
+            <li><a href="index" style="color:#F59E29;">Home</a></li>
+            <li class="active">Aplicar Descontos</li>
         </ol>
+        <h2 style="text-align: justify; color: #F59E29;">Aplicar Descontos</h2>
+        <br>
         <div class="row">
             <div class="col-sm-12">
                 <table class="table table-striped"><thead><th><h3>Descrição:</h3></th><th><h3>Distância:</h3></th></th><th><h3>Aplicar Disconto:</h3></th></thead>
@@ -27,7 +29,7 @@ $escalas = Data::get('escalas');
                             <td><?=$voo->descricao?></td>
                             <td><?=$Voo->Longitude($escalas, $voo->id) . ' milhas'?></td>
                             <td>
-                                <a href="<?=Url::toRoute('opmarketing/aplicarDisconto', $voo->id)?>" class="btn color-green" role="button">Aplicar Disconto</a>
+                                <a href="<?=Url::toRoute('opmarketing/aplicarDisconto', $voo->id)?>" class="btn color-orange-1" role="button">Aplicar Disconto</a>
                             </td>
                         </tr>
                     <?php } ?>
