@@ -14,73 +14,71 @@ ErrMgr::attach($escala);
         <div class="row">
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
-                <header class="page-header">
-                    <h1 class="page-title">Editar Escala</h1>
+                <header>
+                    <h1 class="page-title" style="color: #5bc0de;">Editar Escala</h1>
                 </header>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <hr>
-                        <form class="form-horizontal" method="post" action="<?=Url::toRoute('gestorvoo/doUpdateEscala', $escala->id)?>">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="referencia">Data de Partida:</label>
-                                <div class="col-sm-6">
-                                    <input type="date" value="<?=$escala->dataorigem?>" class="form-control" required name="dataorigem">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="tipoaviao">Data de Chegada:</label>
-                                <div class="col-sm-6">
-                                    <input type="date" required value="<?=$escala->datadestino?>" class="form-control" name="datadestino">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="lotacao">Distância:</label>
-                                <div class="col-sm-6">
-                                    <input type="text" required value="<?=$escala->distancia?>" class="form-control" name="distancia">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="lotacao">Custo:</label>
-                                <div class="col-sm-6">
-                                    <input type="text" required value="<?=$escala->custo?>" class="form-control" name="custo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="lotacao">Aeroporto de Chegada:</label>
-                                <div class="col-sm-6">
-                                    <?php
-                                    echo('<select name="idaeroportodestino" class="form-control">');
-                                    foreach($aeroportos as $aeroporto)
-                                    {
-                                        echo('<option value="' . $aeroporto->id . '">' . $aeroporto->nome . '</option>');
-                                    }
-                                    echo('</select>');
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="lotacao">Aeroporto de Chegada:</label>
-                                <div class="col-sm-6">
-                                    <?php
-                                    echo('<select name="idaeroportodestino" class="form-control">');
-                                    foreach($aeroportos as $aeroporto)
-                                    {
-                                        echo('<option value="' . $aeroporto->id . '">' . $aeroporto->nome . '</option>');
-                                    }
-                                    echo('</select>');
-                                    ?>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="col-lg-4 text-right">
-                                <button class="btn btn-default" type="submit">Guardar</button>
-                            </div>
+
+                <hr>
+                <form class="form-horizontal" method="post" style="margin-left: 240px;" action="<?=Url::toRoute('gestorvoo/doUpdateEscala', $escala->id)?>">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="referencia">Data de Partida:</label>
+                        <div class="col-sm-6">
+                            <input type="date" value="<?=$escala->dataorigem?>" class="form-control" required name="dataorigem">
+                        </div>
                     </div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="tipoaviao">Data de Chegada:</label>
+                        <div class="col-sm-6">
+                            <input type="date" required value="<?=$escala->datadestino?>" class="form-control" name="datadestino">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lotacao">Distância:</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$escala->distancia?>" class="form-control" name="distancia">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lotacao">Custo:</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$escala->custo?>" class="form-control" name="custo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lotacao">Aeroporto de Chegada:</label>
+                        <div class="col-sm-6">
+                            <?php
+                            echo('<select name="idaeroportodestino" class="form-control">');
+                            foreach($aeroportos as $aeroporto)
+                            {
+                                echo('<option value="' . $aeroporto->id . '">' . $aeroporto->nome . '</option>');
+                            }
+                            echo('</select>');
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lotacao">Aeroporto de Chegada:</label>
+                        <div class="col-sm-6">
+                            <?php
+                            echo('<select name="idaeroportodestino" class="form-control">');
+                            foreach($aeroportos as $aeroporto)
+                            {
+                                echo('<option value="' . $aeroporto->id . '">' . $aeroporto->nome . '</option>');
+                            }
+                            echo('</select>');
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 text-right">
+                        <button class="btn btn-info" type="submit" style=" margin-top:-15px; margin-right: -160px;">Guardar</button>
+                    </div>
         </div>
-        </article>
-        <!-- /Article -->
+        </form>
     </div>
-    </div>	<!-- /container -->
+    </div>
+    </article>
+    <!-- /Article -->
+    <!-- /container -->
 <?php Layout::includeLayout('footer') ?>

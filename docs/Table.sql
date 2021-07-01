@@ -1,6 +1,6 @@
 Create database if not exists FlighTravelAir;
 Use FlighTravelAir;
-
+drop database flightravelair;
 
 CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -23,6 +23,7 @@ insert into users values
 (3, 'Maria', 'null', 'null', 543214321, 987654321, 'opcheckin', 'opcheckin', 'opcheckin'),
 (4, 'Sofia', 'null', 'null', 300128765, 917623789, 'gestormarketing', 'gestormarketing', 'gestormarketing');
 
+drop table aeroportos;
 CREATE TABLE aeroportos (
   id int(11) NOT NULL AUTO_INCREMENT,
   nome varchar(45) DEFAULT NULL,
@@ -37,8 +38,10 @@ values
 (default, 'Aeroporto Luz', 'Lisboa', 'Portugal', '262541983'),
 (default, 'Aeroporto Escuro', 'Madrid', 'Espanha', '262544983'),
 (default, 'Kingdom Airport', 'London', 'England', '243675876'),
-(default, 'Dubai Internacional Airport', 'Dubai', 'Arabes United', '787432564');
-
+(default, 'Dubai Internacional Airport', 'Dubai', 'Arabes United', '787432564'),
+(default, 'Miami Air', 'Miamai', 'United States of America', '87831263'),
+(default, 'LosAngeles Airport', 'Los Angeles', 'United States of America', '87856213'),
+(default, 'Paris Internacional Air', 'Paris', 'France', '91956253');
 
 
 CREATE TABLE voos (
@@ -57,8 +60,16 @@ CREATE TABLE voos (
 
 insert into voos(id, descricao, preco, idaeroportoorigem, idaeroportodestino)
 values
-(1,'Lisboa-Madrid',265.00,1,2),
-(2,'Londres-Dubai',679.00,3,4);
+(1, 'Lisboa-Madrid',265.00,1,2),
+(2, 'Londres-Dubai',679.00,3,4),
+(3, 'Miami-LosAngeles', 450.99, 5, 6),
+(4, 'Paris-Lisboa', 300.00, 7, 1),
+(5, 'Lisboa-Londres', 519.00, 1, 3),
+(6, 'Dubai-Miami', 1559.00, 4, 5),
+(7, 'Madrid-LosAngeles', 1309.00, 2, 6),
+(8, 'Londres-Paris', 240.00, 3, 7),
+(9, 'Miami-Lisboa', 2559.00, 5, 1);
+
 
 drop table escalas;
 CREATE TABLE escalas (
@@ -78,16 +89,32 @@ CREATE TABLE escalas (
 
 insert into escalas(id, idaeroportoorigem, idaeroportodestino, idVoo, distancia, dataorigem, datadestino, custo)
 values
-(1, 1, 2, 1, 1382,'2021-06-21', '2021-06-24', 20),
-(2, 3, 4, 2, 5076, '2021-06-22', '2021-06-26', 50);
+(1, 1, 2, 1, 1382,'2021-06-21', '2021-06-21', 200),
+(2, 3, 4, 2, 5076, '2021-06-23', '2021-06-23', 250),
+(3, 3, 4, 3, 5076, '2021-06-24', '2021-06-24', 500),
+(4, 3, 1, 4, 2074, '2021-06-25', '2021-06-25', 340),
+(5, 4, 2, 4, 374, '2021-06-25', '2021-06-25', 120),
+(6, 5, 3, 4, 1222, '2021-06-25', '2021-06-25', 140),
+(7, 7, 6, 5, 891, '2021-06-26', '2021-06-26', 224),
+(8, 6, 7, 5, 2891, '2021-06-26', '2021-06-26', 224),
+(9, 2, 7, 6, 1241, '2021-06-27', '2021-06-27', 530),
+(10, 6, 4, 6, 8711, '2021-06-27', '2021-06-27', 300),
+(11, 7, 2, 6, 1091, '2021-06-28', '2021-06-28', 530),
+(12, 3, 6, 7, 670, '2021-06-29', '2021-06-29', 130),
+(13, 3, 1, 7, 1191, '2021-06-29', '2021-06-30', 450),
+(14, 7, 2, 8, 2748, '2021-06-30', '2021-06-30', 1230),
+(15, 4, 3, 8, 248, '2021-06-30', '2021-06-30', 430),
+(16, 2, 7, 8, 835, '2021-07-01', '2021-07-02', 961),
+(17, 2, 3, 9, 3754, '2021-07-02', '2021-07-02', 914),
+(18, 4, 2, 9, 1853, '2021-07-02', '2021-07-03', 173);
 
-CREATE TABLE aviao (
+
+CREATE TABLE aviaos (
   idAviao  int(11) NOT NULL AUTO_INCREMENT,
-  referencia int(11) DEFAULT NULL,
+  referencia varchar(45) DEFAULT NULL,
   lotacao int(11) DEFAULT NULL,
   tipoAviao varchar(45) DEFAULT NULL,
   CONSTRAINT pk_idAviao PRIMARY KEY (idAviao)
-) ENGINE = InnoDB;
-
-
-
+) ENGINE = InnoDB;	
+ 
+ 
