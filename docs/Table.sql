@@ -117,4 +117,10 @@ CREATE TABLE aviaos (
   CONSTRAINT pk_idAviao PRIMARY KEY (idAviao)
 ) ENGINE = InnoDB;	
  
- 
+ insert into aviaos(idAviao, referencia, lotacao, tipoAviao)
+ values
+ ('1', 'A38059b', '500', 'Airbus A380'),
+ ('2', '747baqe', '410', 'Boeing 747'),
+ ('3', '777belgb', '396', 'Boeing 777'),
+ ('4', 'A530busair', '410', 'Airbus A350'),
+ ('5', 'QSeries3578', '70', 'Bombardier Q Series');
