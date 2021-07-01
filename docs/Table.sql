@@ -16,7 +16,6 @@ CREATE TABLE users (
   CONSTRAINT uk_users_nif UNIQUE KEY (nif)
 ) ENGINE=InnoDB;
 
-
 insert into users values
 (1, 'Jorge', 'null', 'null', 123455432, 987654321, 'admin', 'admin', 'admin'),
 (2, 'Carlos', 'null', 'null', 123443215, 987654321, 'gestorvoo', 'gestorvoo', 'gestorvoo'),
@@ -43,7 +42,6 @@ values
 (default, 'LosAngeles Airport', 'Los Angeles', 'United States of America', '87856213'),
 (default, 'Paris Internacional Air', 'Paris', 'France', '91956253');
 
-
 CREATE TABLE voos (
   id int(11) NOT NULL AUTO_INCREMENT,
   descricao varchar(100) DEFAULT NULL,
@@ -57,7 +55,6 @@ CREATE TABLE voos (
   CONSTRAINT fk_voos_idaeroportodestino FOREIGN KEY (idaeroportodestino) REFERENCES aeroportos (id)
 ) ENGINE=InnoDB;
 
-
 insert into voos(id, descricao, preco, idaeroportoorigem, idaeroportodestino)
 values
 (1, 'Lisboa-Madrid',265.00,1,2),
@@ -69,7 +66,6 @@ values
 (7, 'Madrid-LosAngeles', 1309.00, 2, 6),
 (8, 'Londres-Paris', 240.00, 3, 7),
 (9, 'Miami-Lisboa', 2559.00, 5, 1);
-
 
 drop table escalas;
 CREATE TABLE escalas (
