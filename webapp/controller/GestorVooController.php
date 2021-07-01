@@ -3,14 +3,11 @@ use ArmoredCore\WebObjects\Session;
 use ArmoredCore\WebObjects\View;
 use ArmoredCore\WebObjects\Post;
 use ArmoredCore\WebObjects\Redirect;
-
-
 class GestorVooController extends BaseAuthController
 {
     public function index()
     {
         $this->loginFilterByRole('gestorvoo');
-
         return View::make('gestorvoo.index');
     }
     public function GestaoVoos()
@@ -19,7 +16,6 @@ class GestorVooController extends BaseAuthController
         $voos = voo::all();
         $aeroportos = aeroporto::all();
         $escalas = escala::all();
-
         return View::make('gestorvoo.gestaoVoos', ['voos'=>$voos, 'aeroportos'=>$aeroportos, 'escalas'=>$escalas]);
     }
 
@@ -46,7 +42,6 @@ class GestorVooController extends BaseAuthController
     public function doUpdatevoos()
     {
         $voo = new Voo(Post::getAll());
-
         if($voo->is_valid()){
             $voo->save();
             Redirect::toRoute('gestorvoo/gestaoVoos');
@@ -59,13 +54,11 @@ class GestorVooController extends BaseAuthController
     public function voosAdd()
     {
         $voo = new Voo(Post::getAll());
-
         if($voo->is_valid()){
             $voo->save();
-            Redirect::toRoute('voo/index');
+            Redirect::toRoute('gestorvoo/gestaoVoos');
         } else {
-            //redirect to form with data and errors
-            Redirect::flashToRoute('voo/create', ['voo' => $voo]);
+            Redirect::flashToRoute('gestorvoo/voosAdd', ['voo' => $voo]);
         }
     }
 
@@ -81,7 +74,6 @@ class GestorVooController extends BaseAuthController
     {
         $this->loginFilterByRole('gestorvoo');
         $aviao = Aviao::all();
-
         return View::make('gestorvoo.gestaoAviao', ['aviao'=>$aviao]);
     }
 
@@ -89,12 +81,7 @@ class GestorVooController extends BaseAuthController
     {
         $this->loginFilterByRole('gestorvoo');
         $aviao = Aviao::find([$id]);
-
-        if (is_null($aviao)) {
-        } else {
-            return View::make('gestorvoo.aviaoUpdate', ['aviao' => $aviao]);
-        }
-
+        return View::make('gestorvoo.aviaoUpdate', ['aviao' => $aviao]);
     }
 
     public function doUpdateAviao($id)
@@ -139,7 +126,6 @@ class GestorVooController extends BaseAuthController
     {
         $this->loginFilterByRole('gestorvoo');
         $voo = Voo::find([$id]);
-
         return View::make('gestorvoo.gestaoEscalas', ['voo'=>$voo]);
     }
 
@@ -152,16 +138,12 @@ class GestorVooController extends BaseAuthController
     public function escalaAdd()
     {
         $escala = new Escala(Post::getAll());
-        $datapartida = strtotime(Post::get('dataorigem'));
-        $datachegada = strtotime(Post::get('datadestino'));
-
-        $datapartida = date('Y-m-d H:i:s', $datapartida);
-        $datachegada = date('Y-m-d H:i:s', $datachegada);
-
-        $escala -> dataorigem = $datapartida;
-        $escala -> datadestino = $datachegada;
-
-
+        $dtapartida = strtotime(Post::get('dataorigem'));
+        $dtachegada = strtotime(Post::get('datadestino'));
+        $dtapartida = date('Y-m-d H:i:s', $dtapartida);
+        $dtachegada = date('Y-m-d H:i:s', $dtachegada);
+        $escala -> dataorigem = $dtapartida;
+        $escala -> datadestino = $dtachegada;
         if($escala->is_valid()){
             $escala->save();
             $this->index($escala -> idvoo);
@@ -174,9 +156,7 @@ class GestorVooController extends BaseAuthController
     public function escalaUpdate($id)
     {
         $escala = Escala::find([$id]);
-
         $aeroportos = Aeroporto::all();
-
         if (is_null($escala)) {
         } else {
             return View::make('gestorvoo.escalaUpdate', ['escala' => $escala, 'aeroportos' => $aeroportos]);
@@ -186,7 +166,6 @@ class GestorVooController extends BaseAuthController
     public function doUpdateEscala($id)
     {
         $this->loginFilterByRole('gestorvoo');
-
         $escala = Escala::find([$id]);
         $escala->update_attributes(Post::getAll());
         if($escala->is_valid()){

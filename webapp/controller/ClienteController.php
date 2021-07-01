@@ -20,14 +20,12 @@ class ClienteController extends BaseAuthController
         $voos = voo::all();
         $aeroportos = aeroporto::all();
         $escalas = escala::all();
-
         return View::make('cliente.bilhete', ['voos'=>$voos, 'aeroportos'=>$aeroportos, 'escalas'=>$escalas]);
     }
 
     public function Comprar($id)
     {
         $this->LoginFilterByRole('passageiro');
-
         $voo = voo::find([$id]);
         $aeroportoOrigem = aeroporto::find([$voo->idaeroportoorigem]);
         $aeroportoDestino = aeroporto::find([$voo->idaeroportodestino]);
@@ -39,9 +37,7 @@ class ClienteController extends BaseAuthController
     public function Mostrar($id)
     {
         $this->loginFilterByRole('passageiro');
-
         $voo = Voo::find([$id]);
-
         if (is_null($voo)) {
             return View::make('cliente.index');
         } else {

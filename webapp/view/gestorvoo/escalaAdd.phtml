@@ -49,7 +49,10 @@ ErrMgr::attach($escala);
                                 <div class="top-margin">
                                     <label>Distância:</label>
                                     <input type="text" value="<?=$escala->distancia?>" name="distancia" class="form-control" placeholder="Introduza a distância (distancia)">
-                                    <?= ErrMgr::bind('distancia') ?>
+                                </div>
+                                <div class="top-margin">
+                                    <label>Custo da escala </label>
+                                    <input type="text" value="<?=$escala->custo?>" name="custo" class="form-control" placeholder="Introduza o valor">
                                 </div>
                                 <div class="top-margin">
                                     <label>Aeroporto de origem:</label>
