@@ -55,4 +55,14 @@ class ClienteController extends BaseAuthController
         return View::make('cliente.pagar', ['voo' => $voo]);
         }
     }
+
+    /*public function dadosUpdate($id){
+        $user = User::find([$id]);
+
+        if (is_null($user)) {
+            //TODO redirect to standard error page
+        } else {
+            return View::make('cliente.dadosUpdate', ['user' => $user]);
+        }
+    }*/
 }

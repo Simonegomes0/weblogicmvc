@@ -21,6 +21,7 @@ Router::get('login/registration',   'LoginController/getRegistrationForm');
 Router::get('login/logout',         'LoginController/destroySession');
 Router::post('login/doregistration', 'LoginController/doRegistration');
 Router::post('login/dologin',       'LoginController/doLogin');
+
 // Cliente
 Router::get('cliente/bilhete', 'ClienteController/VerVoos');
 Router::post('cliente/bilhete', 'ClienteController/VerVoos');
@@ -28,6 +29,9 @@ Router::get('cliente/index', 'ClienteController/index');
 Router::get('cliente/comprar', 'ClienteController/Comprar');
 Router::post('cliente/pagar', 'ClienteController/Pagar');
 Router::get('cliente/mostrar', 'ClienteController/Mostrar');
+//Router::post('cliente/update',       'ClienteController/update');
+//Router::get('cliente/dadosUpdate',       'ClienteController/dadosUpdate');
+
 //Admin
 Router::get('admin/index', 'AdminController/index');
 Router::get('admin/GestaoAero', 'AdminController/GestaoAero');

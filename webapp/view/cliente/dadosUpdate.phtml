@@ -4,80 +4,78 @@ use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
 Layout::includeLayout('clienteheader') ?>
-<?php $cliente = Data::get('passageiro') ?>
-<?php ErrMgr::attach($cliente) ?>
+<?php $user = Data::get('user') ?>
+<?php ErrMgr::attach($user) ?>
 
-    <!-- container -->
-    <div class="container">
-        <div class="row">
-            <!-- Article main content -->
-            <article class="col-xs-12 maincontent">
-                <header>
-                    <h1 class="page-title">Gerir <?=$cliente->nome?></h1>
-                </header>
+<!-- container -->
+<div class="container">
+    <div class="row">
+        <!-- Article main content -->
+        <article class="col-xs-12 maincontent">
+            <header>
+                <h1 class="page-title">Editar Perfil: <?=$user->username?></h1>
+            </header>
 
+            <hr>
+            <form class="form-horizontal" method="post" style="margin-left: 220px;" action="<?=Url::toRoute('cliente/dadosUpdate', $user->id)?>">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Username:</label>
+                    <div class="col-sm-6">
+                        <input readonly="true"  value="<?=$user->username?>" class="form-control" required name="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Email:</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="<?=$user->email?>" class="form-control" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Nome:</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="<?=$user->nome?>" class="form-control" name="nome">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Morada:</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="<?=$user>morada?>" class="form-control" name="morada">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">NIF:</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="<?=$user>nif?>" class="form-control" name="nif">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Telefone:</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="<?=$user>telefone?>" class="form-control" name="telefone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Password:</label>
+                    <div class="col-sm-6">
+                        <input type="text" value="<?=$user>password?>" class="form-control" name="password">
+                    </div>
+                </div>
                 <hr>
-                <form class="form-horizontal" method="post" style="margin-left: 220px;" action="<?=Url::toRoute('admin/doUpdateAero', $cliente->id)?>">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Username:</label>
-                        <div class="col-sm-6">
-                            <input type="text"  disabled="" value="<?=$cliente->username?>" class="form-control" required name="username">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Email:</label>
-                        <div class="col-sm-6">
-                            <input type="text" required value="<?=$cliente->email?>" class="form-control" name="email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Nome:</label>
-                        <div class="col-sm-6">
-                            <input type="text" required value="<?=$cliente->nome?>" class="form-control" name="nome">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Morada:</label>
-                        <div class="col-sm-6">
-                            <input type="text" required value="<?=$cliente>morada?>" class="form-control" name="morada">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">NIF:</label>
-                        <div class="col-sm-6">
-                            <input type="text" required value="<?=$cliente>nif?>" class="form-control" name="nif">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Telefone:</label>
-                        <div class="col-sm-6">
-                            <input type="text" required value="<?=$cliente>telefone?>" class="form-control" name="telefone">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Password:</label>
-                        <div class="col-sm-6">
-                            <input type="text" required value="<?=$cliente>password?>" class="form-control" name="password">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="col-lg-4 text-right">
-                        <button class="btn color-green" style="margin-left: 300px;" type="submit" onclick="msg()">Editar</button>
-                    </div>
-        </div>
+                <div class="col-lg-4 text-right">
+                    <button class="btn color-green" style="margin-left: 300px;" type="submit" onclick="msg()">Editar</button>
+                </div>
+    </div>
 
-        </form>
-    </div>
-    </div>
-    <script>
-        function msg(){
-            alert("Aeroporto editado com sucesso!")
-        }
-    </script>
-    </article>
-    <!-- /Article -->
-    </div>
-    </div>	<!-- /container -->
-
+    </form>
+</div>
+</div>
+<script>
+    function msg(){
+        alert("Cliente editado com sucesso!")
+    }
+</script>
+</article>
+<!-- /Article -->
 
 <?php Layout::includeLayout('footer') ?>
+<!-- /container -->
