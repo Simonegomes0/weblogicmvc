@@ -1,0 +1,75 @@
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('clienteheader') ?>
+<?php
+$voos = Data::get('voos');
+$preco = 0;
+$percentagem = -10.00;//desconto de 10%
+$valor_com_desconto = $preco - ($preco * $percentagem * 0.01);
+
+?>
+
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header>
+                    <h1 class="page-title">Inserir desconto <?=$voos->preco?></h1>
+                </header>
+                <hr>
+                <form class="form-horizontal" method="post" style="margin-left: 220px;" action="<?=Url::toRoute('gestorvoo/doUpdateAviao', $voos->id)?>">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Descrição:</label>
+                        <div class="col-sm-6">
+                            <input type="text" readonly="true"  value="<?=$voos->descricao?>" class="form-control" required name="descricao">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Preco:</label>
+                        <div class="col-sm-6">
+                            <input type="text" readonly="true"  required value="<?=$voos->preco?>" class="form-control" name="lotacao">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Aeroporto origem:</label>
+                        <div class="col-sm-6">
+                            <input type="text" readonly="true"  required value="<?=$voos->idaeroportoorigem?>" class="form-control" name="aeroportootigem">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Aeroporto destino:</label>
+                        <div class="col-sm-6">
+                            <input type="text" readonly="true"required value="<?=$voos->idaeroportodestino?>" class="form-control" name="aeroportodestino">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Desconto (10%):</label>
+                        <div class="col-sm-6">
+                            <input type="text" required value="<?=$voos->valor_com_desconto ?>" class="form-control" name="aeroportodestino">
+                        </div>
+                    </div>
+        </div>
+        <hr>
+        <div class="col-lg-4 text-right">
+            <button class="btn color-green" style="margin-left: 300px;" type="submit" onclick="msg()">Editar</button>
+        </div>
+    </div>
+    </form>
+
+    <script>
+        function msg(){
+            alert("Desconto inserido com sucesso!")
+        }
+    </script>
+
+    </article>
+
+    <!-- /Article -->
+    <!-- /container -->
+
+
+<?php Layout::includeLayout('footer') ?>
