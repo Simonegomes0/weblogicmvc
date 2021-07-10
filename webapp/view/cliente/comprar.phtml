@@ -6,12 +6,13 @@ use ArmoredCore\WebObjects\URL;
 Layout::includeLayout('clienteheader') ?>
 <?php
 $voo = Data::get('voo');
-$aeroportoOrigem = Data::get('aeroportoOrigem');
-$aeroportoDestino = Data::get('aeroportoDestino');
+$Origem = Data::get('aeroportoOrigem');
+$Destino = Data::get('aeroportoDestino');
 $primeiraEscala = Data::get('primeiraEscala');
-$ultimaEscala = Data::get('ultimaEscala');
 $dataOrigemTime = strtotime($primeiraEscala->dataorigem);
 $dataOrigem = date('Y-m-d', $dataOrigemTime);
+$ultimaEscala = Data::get('ultimaEscala');
+
 ?>
 
     <!-- container -->
@@ -21,46 +22,52 @@ $dataOrigem = date('Y-m-d', $dataOrigemTime);
 
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
-                <header class="page-header">
-                    <h1 class="page-title">Voo '<?=$voo->descricao?>'</h1>
+                <header>
+                    <h1 class="page-title" style="color: #ff9b22;">Voo '<?=$voo->descricao?>'</h1>
                 </header>
+                <br>
 
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <hr>
 
                             <form method="post" action="<?=Url::toRoute('cliente/pagar', $voo->id)?>">
                                 <div class="top-margin">
-                                    <label>Aeroporto Origem <span class="text-danger">*</span></label>
-                                    <input readonly="true" type="text" value="<?=$aeroportoOrigem->nome?>" class="form-control">
+                                    <label>Aeroporto Origem:</label>
+                                    <input readonly="true" type="text" value="<?=$Origem->nome?>" class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Aeroporto Destino <span class="text-danger">*</span></label>
-                                    <input readonly="true" type="text" value="<?=$aeroportoDestino->nome?>" class="form-control">
+                                    <label>Aeroporto Destino:</label>
+                                    <input readonly="true" type="text" value="<?=$Destino->nome?>" class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Data ida <span class="text-danger">*</span></label>
+                                    <label>Data de Ida:</label>
                                     <input readonly="true" type="text" value="<?=$dataOrigem?>" name="dataida" class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Preco<span class="text-danger">*</span></label>
+                                    <label>Preço:</label>
                                     <input readonly="true" type="text" value="<?=$voo->preco?> €" name="precopago" class="form-control">
                                 </div>
                                 <hr>
                                 <div class="col-lg-4 text-right">
-                                    <button class="btn btn-action" type="submit">Pagar</button>
+                                    <button class="btn btn-action" style="margin-left: 180px;" type="submit" onclick="msg()">Pagar</button>
+
                                 </div>
+
                         </div>
                         </form>
+
                     </div>
                 </div>
-
+                <script>
+                    function msg(){
+                        alert("Bilhete comprado com sucesso, para mais informações consulte o seu histórico!");
+                    }
+                </script>
         </div>
 
         </article>
         <!-- /Article -->
-
     </div>
-    </div>	<!-- /container -->
+    <!-- /container -->
 <?php Layout::includeLayout('footer')?>
