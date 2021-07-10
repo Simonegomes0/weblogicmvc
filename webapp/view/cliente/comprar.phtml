@@ -8,57 +8,59 @@ Layout::includeLayout('clienteheader') ?>
 $voo = Data::get('voo');
 $aeroportoOrigem = Data::get('aeroportoOrigem');
 $aeroportoDestino = Data::get('aeroportoDestino');
-$escala = Data::get('escala');
-
+$primeiraEscala = Data::get('primeiraEscala');
+$ultimaEscala = Data::get('ultimaEscala');
+$dataOrigemTime = strtotime($primeiraEscala->dataorigem);
+$dataOrigem = date('Y-m-d', $dataOrigemTime);
 ?>
+
     <!-- container -->
     <div class="container">
+
         <div class="row">
+
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
-                <h1 class="page-title" >Ligação <?=$voo->descricao?></h1>
-                <br><br>
+                <header class="page-header">
+                    <h1 class="page-title">Voo '<?=$voo->descricao?>'</h1>
+                </header>
+
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <hr>
-                            <div method="post" action="<?=Url::toRoute('cliente/pagar', $voo->id)?>">
-                                <h3>De:</h3>
+
+                            <form method="post" action="<?=Url::toRoute('cliente/pagar', $voo->id)?>">
                                 <div class="top-margin">
-                                    <label>Aeroporto Origem:</label>
+                                    <label>Aeroporto Origem <span class="text-danger">*</span></label>
                                     <input readonly="true" type="text" value="<?=$aeroportoOrigem->nome?>" class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Localida:</label>
-                                    <input readonly="true" type="text" value="<?=$aeroportoOrigem->localidade?>" class="form-control">
-                                </div>
-                                <h3>Para:</h3>
-                                <div class="top-margin">
-                                    <label>Aeroporto Destino:</label>
+                                    <label>Aeroporto Destino <span class="text-danger">*</span></label>
                                     <input readonly="true" type="text" value="<?=$aeroportoDestino->nome?>" class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Localidade:</label>
-                                    <input readonly="true" type="text" value="<?=$aeroportoDestino->localidade?>" class="form-control">
+                                    <label>Data ida <span class="text-danger">*</span></label>
+                                    <input readonly="true" type="text" value="<?=$dataOrigem?>" name="dataida" class="form-control">
                                 </div>
-                                <h3>Informações:</h3>
                                 <div class="top-margin">
-                                    <label>Preco:</label>
-                                    <input readonly="true" type="text" value="<?=$voo->preco?> €" name="preco" class="form-control">
+                                    <label>Preco<span class="text-danger">*</span></label>
+                                    <input readonly="true" type="text" value="<?=$voo->preco?> €" name="precopago" class="form-control">
                                 </div>
                                 <hr>
                                 <div class="col-lg-4 text-right">
-                                    <button class="btn btn-action" type="submit" style="margin-left:180px;">Pagar</button>
+                                    <button class="btn btn-action" type="submit">Pagar</button>
                                 </div>
-                            </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
-
                 </div>
-            </article>
-            <!-- /Article -->
+
         </div>
+
+        </article>
+        <!-- /Article -->
+
     </div>
-    <!-- /container -->
+    </div>	<!-- /container -->
 <?php Layout::includeLayout('footer')?>

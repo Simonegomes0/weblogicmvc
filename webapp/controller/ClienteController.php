@@ -23,17 +23,6 @@ class ClienteController extends BaseAuthController
         return View::make('cliente.bilhete', ['voos'=>$voos, 'aeroportos'=>$aeroportos, 'escalas'=>$escalas]);
     }
 
-    public function Comprar($id)
-    {
-        $this->LoginFilterByRole('passageiro');
-        $voo = voo::find([$id]);
-        $aeroportoOrigem = aeroporto::find([$voo->idaeroportoorigem]);
-        $aeroportoDestino = aeroporto::find([$voo->idaeroportodestino]);
-        $escala = escala::all();
-
-        return View::make('cliente.comprar', ['voo'=>$voo, 'aeroportoOrigem'=>$aeroportoOrigem, 'aeroportoDestino'=>$aeroportoDestino, 'escala'=>$escala]);
-    }
-
     public function Mostrar($id)
     {
         $this->loginFilterByRole('passageiro');
@@ -45,24 +34,58 @@ class ClienteController extends BaseAuthController
         }
     }
 
+    public function Comprar($id)
+    {
+        $this->LoginFilterByRole('passageiro');
+        $voo = voo::find([$id]);
+        $aeroportoOrigem = aeroporto::find([$voo->idaeroportoorigem]);
+        $aeroportoDestino = aeroporto::find([$voo->idaeroportodestino]);
+        $escalas = escala::all();
+        $primeiraEscala = reset($escalas);
+        $ultimaEscala = end($escalas);
+        return View::make('cliente.comprar', ['voo'=>$voo, 'aeroportoOrigem'=>$aeroportoOrigem, 'aeroportoDestino'=>$aeroportoDestino, 'primeiraEscala'=>$primeiraEscala, 'ultimaEscala'=>$ultimaEscala]);
+    }
+
     public function Pagar($id)
     {
-        $this->loginFilterByRole('passageiro');
-        $voo = Voo::find([$id]);
-        if (is_null($voo)) {
-        return View::make('cliente.index');
+        $passagemvenda = new Passagemvenda();
+        $vooBuy = Voo::find([$id]);
+        $idpEscala = $passagemvenda->IdpEscala($vooBuy->id);
+        $iduEscala = $passagemvenda->IduEscala($vooBuy->id);
+        $pEscala = Escala::find([$idpEscala]);
+        $uEscala = Escala::find([$iduEscala]);
+        $passagemvenda->dataida = $pEscala->dataorigem;
+        $passagemvenda->datachegada = $uEscala->datadestino;
+        $passagemvenda->precopago = $vooBuy->preco;
+        $passagemvenda->datacompra = date('Y-m-d H:i:s');
+        $passagemvenda->iduser = AuthManager::getLogginId();
+        $passagemvenda->idvooida = $vooBuy->id;
+
+        if($passagemvenda->is_valid()){
+            $passagemvenda->save();
+            Redirect::toRoute('cliente/bilhete');
         } else {
-        return View::make('cliente.pagar', ['voo' => $voo]);
+            Redirect::flashToRoute('cliente/comprar');
         }
     }
 
-    /*public function dadosUpdate($id){
-        $user = User::find([$id]);
+    public function Historico()
+    {
+        $utilizador = User::find([AuthManager::getLogginId()]);
 
-        if (is_null($user)) {
-            //TODO redirect to standard error page
-        } else {
-            return View::make('cliente.dadosUpdate', ['user' => $user]);
+        $passagemvendas = Passagemvenda::all();
+
+
+        $passagensUser = (array) null;
+
+        foreach ($passagemvendas as $passagem)
+        {
+            if($utilizador->id == $passagem->iduser)
+            {
+                array_push($passagensUser, $passagem);
+            }
         }
-    }*/
+
+        return View::make('historicopassagens.index', ['passagens' => $passagensUser, 'nome' => $utilizador->nome]);
+    }
 }

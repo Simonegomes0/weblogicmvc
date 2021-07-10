@@ -1,0 +1,66 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('clienteheader') ?>
+<?php
+$passagens = Data::get('passagens');
+$nome = Data::get('nome');
+$PassagemVenda = new PassagemVenda();
+$pontos = 0;
+$totalPontos = 0;
+?>
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Bilhetes Comprados</li>
+        </ol>
+        <h2 class="text-left top-space">Bilhetes comprados</h2>
+        <h2 class="top-space"></h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Lista de Passagens de: <?=$nome?></h1>
+            </div>
+            <div class="col-sm-12">
+                <table class="table table-striped"><thead><th><h3>Origem e destino</h3></th><th><h3>Data de ida</h3></th><th><h3>Preço</h3></th><th><h3>Pontos</h3></th></thead>
+                    <tbody>
+                    <?php foreach ($passagens as $passagem) {
+
+                        if($passagem->checkin == 0)
+                        {
+                            $pontos = 'Chekin não realizado.*';
+                        }
+                        else
+                        {
+                            $pontos = $PassagemVenda->CalcularPontosVoo($passagem->idvooida);
+                            $totalPontos += $pontos;
+                        }
+
+                        ?>
+                        <tr>
+                            <td><?=$PassagemVenda->DevolverNomeVoo($passagem->idvooida)?></td>
+                            <td><?=date_format($passagem->dataida, 'd-m-Y')?></td>
+                            <td><?=$passagem->precopago . ' €'?></td>
+                            <td><?=$pontos?></td>
+                            <td>
+                                <a href="<?=Url::toRoute('passagemvendas/show', $passagem->id)?>" class="btn btn-info" role="button">Ver</a>
+                            </td>
+                            <?=$PassagemVenda->VerificarSeTemDescontos($passagem->idvooida)?>
+                        </tr>
+                    <?php } ?>
+
+                    </tbody>
+
+
+                </table>
+                <br>
+                <h2>Total de pontos: <?=$totalPontos?></h2>
+                <br>
+                <h6>*Os pontos do voo ficarão disponíveis após o checkin ser feito</h6>
+            </div>
+        </div> <!-- /row -->
+
+    </div>	<!-- /container -->
+<?php Layout::includeLayout('footer')?>

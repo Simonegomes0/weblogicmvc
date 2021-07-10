@@ -29,6 +29,7 @@ Router::get('cliente/index', 'ClienteController/index');
 Router::get('cliente/comprar', 'ClienteController/Comprar');
 Router::post('cliente/pagar', 'ClienteController/Pagar');
 Router::get('cliente/mostrar', 'ClienteController/Mostrar');
+Router::get('cliente/historico', 'ClienteController/Historico');
 //Router::post('cliente/update',       'ClienteController/update');
 //Router::get('cliente/dadosUpdate',       'ClienteController/dadosUpdate');
 

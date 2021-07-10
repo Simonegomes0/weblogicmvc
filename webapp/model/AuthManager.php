@@ -44,4 +44,17 @@ class AuthManager implements IAuthManager
             return null;
         }
     }
+
+    static public function isUserLoggedIn()
+    {
+        return Session::has('APP_USER_ID');
+    }
+
+    static public function getLogginId()
+    {
+        if(self::isUserLoggedIn())
+        {
+            return Session::get('APP_USER_ID');
+        }
+    }
 }
