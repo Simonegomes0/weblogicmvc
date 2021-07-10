@@ -120,3 +120,19 @@ CREATE TABLE aviaos (
  ('3', '777belgb', '396', 'Boeing 777'),
  ('4', 'A530busair', '410', 'Airbus A350'),
  ('5', 'QSeries3578', '70', 'Bombardier Q Series');
+
+drop table passagemvendas;
+ CREATE TABLE passagemvendas(
+  id int(11) NOT NULL AUTO_INCREMENT,
+  dataida date NOT NULL,
+  datachegada date NOT NULL,
+  precopago decimal(7,2) NOT NULL,
+  datacompra date DEFAULT NULL,
+  checkin int(11) DEFAULT '0',
+  iduser int(11) DEFAULT NULL,
+  idvooida int(11) DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY fk_passagemVenda_idUser (iduser),
+  KEY fk_passagemVenda_idVooIda (idvooida),
+  CONSTRAINT fk_passagemVenda_idVooIda FOREIGN KEY (idvooida) REFERENCES voos (id)
+ )ENGINE = InnoDB;
